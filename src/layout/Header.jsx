@@ -11,13 +11,13 @@ function Header() {
   return (
     <header className="flex h-[88px] items-center justify-between border px-4 md:px-[10%]">
       <Link to="/">seping</Link>
-      <nav className="flex gap-4">
+      <nav className="flex gap-3">
         {USER_ICONS.map((icon) => (
           <button key={icon.alt} type="button">
             <img src={icon.src} alt={icon.alt} />
           </button>
         ))}
-        <Button text="로그인" color="blue-01" />
+        <Button text="로그인" color="btn-purple" font="white" />
       </nav>
     </header>
   );
