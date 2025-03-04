@@ -1,8 +1,8 @@
 function Button({
   color = 'black',
   font = 'white',
-  size = 'high',
-  customSize = '',
+  size,
+  customSize,
   text = 'Button',
 }) {
   const BTN_COLOR = {
@@ -24,7 +24,7 @@ function Button({
   return (
     <button
       type="button"
-      className={`rounded-lg border ${BTN_COLOR[color]} ${BTN_FONT[font]} ${customSize || BTN_SIZE[size]}`}
+      className={`rounded-lg border p-2 ${BTN_COLOR[color]} ${BTN_FONT[font]} ${customSize || BTN_SIZE[size]}`}
     >
       {text}
     </button>
