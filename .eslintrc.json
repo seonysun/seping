@@ -10,6 +10,7 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
+    "plugin:tailwindcss/recommended",
     "airbnb",
     "prettier"
   ],
@@ -20,7 +21,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "import", "prettier"],
+  "plugins": ["react", "react-hooks", "import", "tailwindcss", "prettier"],
   "rules": {
     "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
