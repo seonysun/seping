@@ -13,7 +13,7 @@ function Header() {
   const [isSideOpen, setIsSideOpen] = useState(false);
 
   return (
-    <header className="flex h-[88px] items-center border px-4 md:px-[10%]">
+    <header className="flex h-[88px] items-center border-b px-4 md:px-[10%]">
       {isSideOpen && <SideModal setIsSideOpen={setIsSideOpen} />}
       <button
         type="button"
