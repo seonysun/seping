@@ -1,13 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import useTheme from '../../hooks/useTheme';
 
 function ToggleButton() {
   const [isOn, setIsOn] = useState(false);
+
+  const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    document.documentElement.classList[theme === 'dark' ? 'add' : 'remove'](
+      'dark',
+    );
+  }, [theme]);
 
   return (
     <button
       type="button"
       aria-label="Toggle Switch"
-      onClick={() => setIsOn(!isOn)}
+      onClick={() => {
+        setIsOn(!isOn);
+        toggleTheme();
+      }}
       className={`relative flex h-4 w-8 items-center rounded-full ${isOn ? 'bg-purple' : 'bg-gray-400'} transition-all duration-300`}
     >
       <div

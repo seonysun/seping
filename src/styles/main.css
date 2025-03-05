@@ -6,6 +6,16 @@
   font-family: 'Gmarket Sans';
 }
 
+@layer base {
+  body {
+    @apply bg-light-main text-black;
+  }
+
+  .dark body {
+    @apply bg-dark-main text-white;
+  }
+}
+
 @layer components {
   .btn-danger {
     @apply bg-danger hover:bg-danger-hover;
