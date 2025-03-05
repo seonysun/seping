@@ -12,3 +12,6 @@ export { default as Instagram } from './social/Instagram.svg';
 export { default as SearchIcon } from './common/Search.svg';
 export { default as FilterIcon } from './common/Filter.svg';
 export { default as ChevronDown } from './common/ChevronDown.svg';
+
+/** navbar */
+export { default as BurgerIcon } from './common/Burger.svg';
