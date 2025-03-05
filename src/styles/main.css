@@ -5,3 +5,24 @@
 * {
   font-family: 'Gmarket Sans';
 }
+
+@layer components {
+  .btn-danger {
+    @apply bg-danger hover:bg-danger-hover;
+  }
+  .btn-success {
+    @apply bg-success hover:bg-success-hover;
+  }
+  .btn-warning {
+    @apply bg-warning hover:bg-warning-hover;
+  }
+  .btn-purple {
+    @apply bg-purple hover:bg-purple-hover;
+  }
+  .btn-blue {
+    @apply bg-blue hover:bg-blue-hover;
+  }
+  .btn-gray {
+    @apply bg-gray hover:bg-gray-hover;
+  }
+}

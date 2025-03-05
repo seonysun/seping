@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Button from '../components/Button/Button';
+import { Button } from '../components';
 
 function NotFound() {
   return (
@@ -7,7 +7,7 @@ function NotFound() {
       <h2 className="text-4xl font-bold">Error 404</h2>
       <p>존재하지 않는 페이지입니다.</p>
       <Link to="/">
-        <Button color="blue-01" text="홈으로" size="high" />
+        <Button text="홈으로" size="high" />
       </Link>
     </div>
   );
