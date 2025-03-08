@@ -7,11 +7,12 @@ const BTN_SIZE = {
   low: 'h-[48px] w-[162px]',
 };
 
-function Button({ color, font = 'black', size, text = 'Button' }) {
+function Button({ color, font = 'black', size, text = 'Button', onClick }) {
   return (
     <button
       type="button"
-      className={`rounded-lg border p-2 ${color} ${BTN_FONT[font]} ${BTN_SIZE[size] || size}`}
+      onClick={onClick}
+      className={`rounded-lg p-2 ${color} ${BTN_FONT[font]} ${BTN_SIZE[size] || size}`}
     >
       {text}
     </button>

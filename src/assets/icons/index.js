@@ -1,6 +1,6 @@
 /** user icons */
-export { default as User } from './user/User.svg';
-export { default as Favorite } from './user/Favorites.svg';
+export { default as UserIcon } from './user/User';
+export { default as Favorites } from './user/Favorites';
 
 /** social icons */
 export { default as Twitter } from './social/Twitter.svg';
@@ -14,4 +14,4 @@ export { default as FilterIcon } from './common/Filter.svg';
 export { default as ChevronDown } from './common/ChevronDown.svg';
 
 /** navbar */
-export { default as BurgerIcon } from './common/Burger.svg';
+export { default as BurgerIcon } from './common/Burger';

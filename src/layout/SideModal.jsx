@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React from 'react';
-
 function SideModal({ setIsSideOpen }) {
   return (
     <section
@@ -9,12 +7,12 @@ function SideModal({ setIsSideOpen }) {
       onClick={() => setIsSideOpen(false)}
     >
       <div
-        className="fixed left-0 top-0 z-50 h-full w-64 bg-white"
+        className="fixed left-0 top-0 z-50 h-full w-64 bg-white dark:bg-dark-main"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
-          className="absolute right-4 top-4 text-gray"
+          className="absolute right-6 top-6"
           onClick={() => setIsSideOpen(false)}
         >
           ✖
