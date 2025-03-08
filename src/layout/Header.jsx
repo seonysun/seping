@@ -35,7 +35,7 @@ function Header() {
         size="28"
         onClick={() => setIsSideOpen((prev) => !prev)}
       />
-      <Link to="/" className="ml-4 flex-1 justify-start">
+      <Link to="/home" className="ml-4 flex-1 justify-start">
         seping
       </Link>
 
