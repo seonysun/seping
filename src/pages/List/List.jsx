@@ -48,9 +48,9 @@ function List() {
     <div className="px-4 md:px-[10%]">
       <ListNav />
       <div className="my-3 flex flex-wrap pt-[96px]">
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
+        <VideoCard id={1} />
+        <VideoCard id={2} />
+        <VideoCard id={3} />
       </div>
     </div>
   );
