@@ -30,7 +30,7 @@ function Header() {
   const [isSideOpen, setIsSideOpen] = useState(false);
 
   return (
-    <header className="flex h-[88px] items-center border-b px-4 md:px-[10%]">
+    <header className="fixed top-0 flex h-[88px] w-full items-center border-b bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
       {isSideOpen && (
         <SideModal setIsSideOpen={setIsSideOpen} title="이번주 인기 게시물" />
       )}
