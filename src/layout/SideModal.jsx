@@ -1,15 +1,16 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { IoClose } from 'react-icons/io5';
+import VideoCard from '../components/Card/VideoCard';
 
-function SideModal({ setIsOpen, title, direction = 'left' }) {
+function SideModal({ setIsOpen, title, direction = 'left', itemList }) {
   return (
     <section
       className="fixed inset-0 z-50 bg-black/50"
       onClick={() => setIsOpen()}
     >
       <div
-        className={`fixed top-0 h-full w-64 bg-white transition-transform duration-300 dark:bg-dark-main sm:w-96 ${
+        className={`fixed top-0 h-full w-64 overflow-y-scroll bg-white transition-transform duration-300 dark:bg-dark-main sm:w-96 ${
           direction === 'right'
             ? 'right-0 translate-x-0'
             : 'left-0 -translate-x-0'
@@ -21,6 +22,10 @@ function SideModal({ setIsOpen, title, direction = 'left' }) {
           onClick={() => setIsOpen()}
         />
         <div className="p-6">{title}</div>
+        <div className="flex flex-col px-3">
+          {itemList &&
+            itemList.map((id) => <VideoCard key={id} id={id} size="w-full" />)}
+        </div>
       </div>
     </section>
   );

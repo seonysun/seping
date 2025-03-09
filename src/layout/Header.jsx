@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaRegHeart, FaUser } from 'react-icons/fa';
 import { RxHamburgerMenu } from 'react-icons/rx';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, ToggleButton } from '../components';
 import Navbar from './Navbar';
@@ -10,6 +10,8 @@ import { modalSlice } from '../redux/Slice/modalSlice';
 
 function UserNav() {
   const [isLogin, setIsLogin] = useState(true);
+
+  const likeList = useSelector((state) => state.like);
   const dispatch = useDispatch();
 
   return (
@@ -21,7 +23,11 @@ function UserNav() {
           dispatch(
             modalSlice.actions.openModal({
               modalType: 'side',
-              modalProps: { title: '좋아요 목록', direction: 'right' },
+              modalProps: {
+                title: '좋아요 목록',
+                direction: 'right',
+                itemList: likeList,
+              },
             }),
           )
         }
