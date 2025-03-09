@@ -1,15 +1,16 @@
 import { LuChevronUp } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Footer, Header } from '../../layout';
+import { Header, Navbar } from '../../layout';
+import ListFallBack from '../List/ListFallback';
 import 'swiper/css';
 
 function SwipeContent() {
   return (
-    <div className="">
+    <div className="flex h-svh flex-col">
       <Header />
-
-      <Footer />
+      <ListFallBack num={6} />
+      <Navbar />
     </div>
   );
 }
@@ -27,7 +28,7 @@ function LockScreen() {
     >
       <SwiperSlide className="flex flex-col items-center justify-around bg-[#ac72b2]">
         <p className="text-4xl text-white">seping.</p>
-        <div className="animate-arrow text-[#553858]">
+        <div className="animate-spark text-[#553858]">
           <LuChevronUp size="80" />
           <p className="text-xl">시작하기</p>
         </div>
