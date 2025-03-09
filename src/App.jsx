@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { Footer, Header } from './layout';
+import useResize from './hooks/useResize';
+import { Footer, Header, Navbar } from './layout';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <main className="flex-1">
         <Outlet />
       </main>
+      {useResize() ? <Navbar /> : null}
       <Footer />
     </div>
   );
