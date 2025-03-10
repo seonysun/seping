@@ -17,9 +17,9 @@ function FavoriteButton({ id }) {
       }}
     >
       {isLike ? (
-        <IoHeart color="red" size="24" />
+        <IoHeart color="red" size="28" />
       ) : (
-        <IoHeartOutline color="red" size="24" />
+        <IoHeartOutline color="red" size="28" />
       )}
     </button>
   );
