@@ -2,13 +2,13 @@ import { LuChevronUp } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navbar } from '../../layout';
-import ListFallBack from '../List/ListFallback';
+import ListFallback from '../List/ListFallback';
 import 'swiper/css';
 
 function SwipeContent() {
   return (
     <div className="absolute flex size-full flex-col">
-      <ListFallBack num={6} />
+      <ListFallback num={6} />
       <Navbar />
     </div>
   );

@@ -5,14 +5,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, ToggleButton } from '../components';
 import Navbar from './Navbar';
+import useFetch from '../hooks/useFetch';
 import useResize from '../hooks/useResize';
 import { modalSlice } from '../redux/Slice/modalSlice';
+import videoAPI from '../utils/api/videoAPI';
 
 function UserNav() {
   const [isLogin, setIsLogin] = useState(true);
 
-  const likeList = useSelector((state) => state.like);
   const dispatch = useDispatch();
+
+  const likeItemsId = useSelector((state) => state.like);
+  const { data } = useFetch(() => videoAPI.allList());
+  const likeList = data?.length
+    ? data.filter((item) => likeItemsId.includes(item.id))
+    : [];
 
   return (
     <nav className="mx-2 flex items-center gap-3">

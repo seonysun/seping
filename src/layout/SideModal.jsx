@@ -24,7 +24,9 @@ function SideModal({ setIsOpen, title, direction = 'left', itemList }) {
         <div className="p-6">{title}</div>
         <div className="flex flex-col px-3">
           {itemList &&
-            itemList.map((id) => <VideoCard key={id} id={id} size="w-full" />)}
+            itemList.map((item) => (
+              <VideoCard key={item.id} item={item} size="w-full" />
+            ))}
         </div>
       </div>
     </section>

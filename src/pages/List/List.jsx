@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import VideoCard from '../../components/Card/VideoCard';
 import SearchInput from '../../components/Input/SearchInput';
+import useFetch from '../../hooks/useFetch';
+import videoAPI from '../../utils/api/videoAPI';
 
 const LIST_TABS = [
   { to: 'poong', tab: '또간집' },
@@ -44,13 +46,15 @@ function ListNav() {
 }
 
 function List() {
+  const { data } = useFetch(() => videoAPI.allList());
+
   return (
     <div className="px-4 md:px-[10%]">
       <ListNav />
       <div className="my-3 flex flex-wrap pt-[96px]">
-        <VideoCard id={1} />
-        <VideoCard id={2} />
-        <VideoCard id={3} />
+        {data
+          ? data.map((item) => <VideoCard key={item.id} item={item} />)
+          : []}
       </div>
     </div>
   );
