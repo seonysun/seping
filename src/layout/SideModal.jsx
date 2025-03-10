@@ -1,25 +1,33 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { IoClose } from 'react-icons/io5';
+import VideoCard from '../components/Card/VideoCard';
 
-function SideModal({ setIsSideOpen }) {
+function SideModal({ setIsOpen, title, direction = 'left', itemList }) {
   return (
     <section
-      className="fixed inset-0 z-40 bg-black/50"
-      onClick={() => setIsSideOpen(false)}
+      className="fixed inset-0 z-50 bg-black/50"
+      onClick={() => setIsOpen()}
     >
       <div
-        className="fixed left-0 top-0 z-50 h-full w-64 bg-white"
+        className={`fixed top-0 h-full w-64 overflow-y-scroll bg-white transition-transform duration-300 dark:bg-dark-main sm:w-96 ${
+          direction === 'right'
+            ? 'right-0 translate-x-0'
+            : 'left-0 -translate-x-0'
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          type="button"
-          className="absolute right-4 top-4 text-gray"
-          onClick={() => setIsSideOpen(false)}
-        >
-          ✖
-        </button>
-        <div className="p-6">메뉴</div>
+        <IoClose
+          className="absolute right-6 top-6 cursor-pointer"
+          onClick={() => setIsOpen()}
+        />
+        <div className="p-6">{title}</div>
+        <div className="flex flex-col px-3">
+          {itemList &&
+            itemList.map((item) => (
+              <VideoCard key={item.id} item={item} size="w-full" />
+            ))}
+        </div>
       </div>
     </section>
   );

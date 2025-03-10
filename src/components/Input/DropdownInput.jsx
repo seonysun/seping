@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown } from '../../assets/icons';
+import { FaChevronDown } from 'react-icons/fa';
 
 const DROP_LIST = ['1번', '2번', '3번'];
 
@@ -20,10 +20,10 @@ function DropdownInput({ size, initialText = 'Dropdown' }) {
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label="Toggle Filter"
-        className="flex justify-between"
+        className="flex items-center justify-between"
       >
         <span>{selected}</span>
-        <img src={ChevronDown} alt="arrowdown" />
+        <FaChevronDown size="22" />
       </button>
       {isOpen && (
         <ul className="absolute left-0 top-full z-10 w-full rounded-lg border bg-white">

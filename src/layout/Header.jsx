@@ -1,44 +1,80 @@
 import { useState } from 'react';
+import { FaRegHeart, FaUser } from 'react-icons/fa';
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import SideModal from './SideModal';
-import { BurgerIcon, Favorite, User } from '../assets/icons';
 import { Button, ToggleButton } from '../components';
+import Navbar from './Navbar';
+import useFetch from '../hooks/useFetch';
+import useResize from '../hooks/useResize';
+import { modalSlice } from '../redux/Slice/modalSlice';
+import videoAPI from '../utils/api/videoAPI';
 
-const USER_ICONS = [
-  { src: Favorite, alt: 'Favorite' },
-  { src: User, alt: 'User' },
-];
+function UserNav() {
+  const [isLogin, setIsLogin] = useState(true);
 
-function Header() {
-  const [isSideOpen, setIsSideOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const likeItemsId = useSelector((state) => state.like);
+  const { data } = useFetch(() => videoAPI.allList());
+  const likeList = data?.length
+    ? data.filter((item) => likeItemsId.includes(item.id))
+    : [];
 
   return (
-    <header className="flex h-[88px] items-center border-b px-4 md:px-[10%]">
-      {isSideOpen && <SideModal setIsSideOpen={setIsSideOpen} />}
-      <button
-        type="button"
-        onClick={() => setIsSideOpen((prev) => !prev)}
-        className="mr-2"
-      >
-        <img src={BurgerIcon} alt="navbar" />
-      </button>
+    <nav className="mx-2 flex items-center gap-3">
+      <FaRegHeart
+        size="22"
+        className="cursor-pointer"
+        onClick={() =>
+          dispatch(
+            modalSlice.actions.openModal({
+              modalType: 'side',
+              modalProps: {
+                title: '좋아요 목록',
+                direction: 'right',
+                itemList: likeList,
+              },
+            }),
+          )
+        }
+      />
+      {isLogin && <FaUser size="22" className="cursor-pointer" />}
+      <Button
+        text={isLogin ? '로그아웃' : '로그인'}
+        color="btn-purple"
+        size="text-sm"
+        onClick={() => {
+          setIsLogin((prev) => !prev);
+        }}
+      />
+    </nav>
+  );
+}
 
-      <Link to="/" className="flex-1 justify-start">
+function Header() {
+  const dispatch = useDispatch();
+
+  return (
+    <header className="fixed top-0 flex h-[88px] w-full items-center border-b bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
+      <RxHamburgerMenu
+        size="28"
+        className="cursor-pointer"
+        onClick={() =>
+          dispatch(
+            modalSlice.actions.openModal({
+              modalType: 'side',
+              modalProps: { title: '이번주 인기 게시물' },
+            }),
+          )
+        }
+      />
+      <Link to="/home" className="ml-4 flex-1 justify-start">
         seping
       </Link>
-
-      <nav className="flex gap-2">
-        {USER_ICONS.map((icon) => (
-          <button key={icon.alt} type="button">
-            <img src={icon.src} alt={icon.alt} />
-          </button>
-        ))}
-        <Button text="로그인" color="btn-purple" font="white" />
-        <div className="flex flex-col items-center justify-center gap-1 text-xs">
-          다크모드
-          <ToggleButton />
-        </div>
-      </nav>
+      {useResize() ? null : <Navbar />}
+      <UserNav />
+      <ToggleButton />
     </header>
   );
 }

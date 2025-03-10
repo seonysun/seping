@@ -1,30 +1,26 @@
-import { useEffect, useState } from 'react';
-import { instance } from '../utils/api/instance';
+import { useCallback, useEffect, useState } from 'react';
 
-const useFetch = (url, params = {}) => {
+const useFetch = (fetchAPI) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    async function getData() {
-      setLoading(true);
+  const memoizedFetchAPI = useCallback(fetchAPI, []);
 
+  useEffect(() => {
+    setLoading(true);
+    const fetchData = async () => {
       try {
-        const response = await instance.get(url, { params });
-        setData(response.data);
-      } catch (err) {
-        console.error(err);
+        const response = await memoizedFetchAPI();
+        setData(response.data.products);
+      } catch (error) {
+        console.error('API 호출 에러:', error);
       } finally {
         setLoading(false);
       }
-    }
+    };
+    fetchData();
+  }, [memoizedFetchAPI]);
 
-    getData();
-  }, [url, JSON.stringify(params)]);
-
-  useEffect(() => {
-    if (data) console.log(data);
-  }, [data]);
   return { data, loading };
 };
 
