@@ -2,7 +2,7 @@ import { SOCIAL_ICONS } from '../constants/uiData';
 
 function Footer() {
   return (
-    <footer className="flex flex-col bg-[#292929] px-4 py-12 font-light text-white md:px-[10%]">
+    <footer className="flex flex-col bg-[#292929] px-4 pb-16 pt-8 font-light text-white md:px-[10%]">
       <ul className="mb-6 flex w-[160px] justify-between">
         {SOCIAL_ICONS.map((icon) => (
           <li key={icon.alt}>
