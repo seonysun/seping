@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import useResize from './hooks/useResize';
-import { Footer, Header, Navbar, SideModal } from './layout';
+import { Footer, Header, SideModal } from './layout';
 import { modalSlice } from './redux/Slice/modalSlice';
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
       <main className="flex-1 pt-[88px]">
         <Outlet />
       </main>
-      {useResize() ? <Navbar /> : null}
       <Footer />
     </div>
   );
