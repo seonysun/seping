@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const likeSlice = createSlice({
   name: 'like',
-  initialState: [],
+  initialState: JSON.parse(localStorage.getItem('like')) || [],
   reducers: {
     addLike(state, action) {
       state.push(action.payload);

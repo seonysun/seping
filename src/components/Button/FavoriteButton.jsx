@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { likeSlice } from '../../redux/Slice/likeSlice';
 
 function FavoriteButton({ id }) {
-  const isLike = useSelector((state) => state.like.some((item) => item === id));
   const dispatch = useDispatch();
+
+  const isLike = useSelector((state) => state.like.includes(id));
 
   return (
     <button
