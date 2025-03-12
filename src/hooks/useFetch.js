@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 const useFetch = (fetchAPI) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const memoizedFetchAPI = useCallback(fetchAPI, []);

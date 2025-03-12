@@ -16,7 +16,7 @@ function UserNav() {
 
   const likeItemsId = useSelector((state) => state.like);
   const { data } = useFetch(() => videoAPI.allList());
-  const likeList = data?.length
+  const likeList = data.length
     ? data.filter((item) => likeItemsId.includes(item.id))
     : [];
 
