@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { Footer, Header, SideModal } from './layout';
@@ -18,7 +19,9 @@ function App() {
       )}
       <Header />
       <main className="flex-1 pt-[88px]">
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </div>
