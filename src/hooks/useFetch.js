@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const useFetch = (fetchAPI) => {
+const useFetch = (fetchAPI, deps) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +19,7 @@ const useFetch = (fetchAPI) => {
       }
     };
     fetchData();
-  }, [memoizedFetchAPI]);
+  }, [memoizedFetchAPI, deps]);
 
   return { data, loading };
 };
