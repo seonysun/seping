@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import useResize from './hooks/useResize';
-import { Footer, Header, Navbar, SideModal } from './layout';
+import { Footer, Header, SideModal } from './layout';
 import { modalSlice } from './redux/Slice/modalSlice';
 
 function App() {
@@ -19,9 +19,10 @@ function App() {
       )}
       <Header />
       <main className="flex-1 pt-[88px]">
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
-      {useResize() ? <Navbar /> : null}
       <Footer />
     </div>
   );

@@ -13,12 +13,12 @@ const MENU_TABS = [
 
 const NAV_STYLE = {
   mobile:
-    'flex justify-around p-3 fixed bottom-0 left-0 w-full bg-white border-t text-black',
+    'z-50 flex justify-around p-3 fixed bottom-0 left-0 w-full bg-white border-t text-black',
   desk: 'mx-3 flex items-start gap-3',
 };
 
 function Navbar() {
-  const [selectedMenu, setSelectedMenu] = useState(MENU_TABS[0].tab);
+  const [selectedMenu, setSelectedMenu] = useState('');
 
   const navigate = useNavigate();
 

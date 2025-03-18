@@ -6,3 +6,9 @@ export const SOCIAL_ICONS = [
   { src: Tiktok, alt: 'TikTok' },
   { src: Instagram, alt: 'Instagram' },
 ];
+
+export const MAX_LIST_LENGTH = {
+  HOME: {
+    ITEMS: 12,
+  },
+};

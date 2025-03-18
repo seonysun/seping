@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { Button, ToggleButton } from '../components';
 import Navbar from './Navbar';
 import useFetch from '../hooks/useFetch';
-import useResize from '../hooks/useResize';
 import { modalSlice } from '../redux/Slice/modalSlice';
 import videoAPI from '../utils/api/videoAPI';
 
@@ -17,7 +16,7 @@ function UserNav() {
 
   const likeItemsId = useSelector((state) => state.like);
   const { data } = useFetch(() => videoAPI.allList());
-  const likeList = data?.length
+  const likeList = data.length
     ? data.filter((item) => likeItemsId.includes(item.id))
     : [];
 
@@ -72,7 +71,7 @@ function Header() {
       <Link to="/home" className="ml-4 flex-1 justify-start">
         seping
       </Link>
-      {useResize() ? null : <Navbar />}
+      <Navbar />
       <UserNav />
       <ToggleButton />
     </header>
