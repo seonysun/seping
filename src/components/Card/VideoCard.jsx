@@ -1,6 +1,6 @@
 import FavoriteButton from '../Button/FavoriteButton';
 
-function VideoCard({ item, size = 'w-1/2 md:w-1/3' }) {
+function VideoCard({ item, size = 'w-[48%] md:w-[30%]' }) {
   return (
     <section className={`${size} mb-2 overflow-hidden px-2`}>
       <div className="py-2">
