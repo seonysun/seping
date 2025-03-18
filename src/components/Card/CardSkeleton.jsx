@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-function ListFallBack({ num }) {
+function CardSkeleton({ num }) {
   return (
     <div className="flex h-full flex-wrap p-4 md:px-[10%]">
       {Array.from({ length: num }).map((_, i) => (
@@ -16,4 +16,4 @@ function ListFallBack({ num }) {
   );
 }
 
-export default ListFallBack;
+export default CardSkeleton;

@@ -1,14 +1,14 @@
 import { LuChevronUp } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import CardSkeleton from '../../components/Card/CardSkeleton';
 import { Navbar } from '../../layout';
-import ListFallback from '../List/ListFallback';
 import 'swiper/css';
 
 function SwipeContent() {
   return (
     <div className="absolute flex size-full flex-col">
-      <ListFallback num={6} />
+      <CardSkeleton num={6} />
       <Navbar />
     </div>
   );
