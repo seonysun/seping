@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from 'react';
@@ -17,10 +18,18 @@ const NAV_STYLE = {
   desk: 'mx-3 flex items-start gap-3',
 };
 
-function Navbar() {
-  const [selectedMenu, setSelectedMenu] = useState('');
-
+function Navbar({ setSearchOpen }) {
   const navigate = useNavigate();
+
+  const [selectedMenu, setSelectedMenu] = useState(null);
+
+  const handleMenu = (menu) => {
+    selectedMenu === menu.tab
+      ? setSelectedMenu(null)
+      : setSelectedMenu(menu.tab);
+
+    menu.to === 'search' ? setSearchOpen((prev) => !prev) : navigate(menu.to);
+  };
 
   return (
     <ul className={`${useResize() ? NAV_STYLE.mobile : NAV_STYLE.desk}`}>
@@ -28,8 +37,7 @@ function Navbar() {
         <li
           key={menu.tab}
           onClick={() => {
-            setSelectedMenu(menu.tab);
-            navigate(menu.to);
+            handleMenu(menu);
           }}
           className={`${
             selectedMenu === menu.tab
@@ -43,4 +51,5 @@ function Navbar() {
     </ul>
   );
 }
+
 export default Navbar;

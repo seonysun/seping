@@ -17,6 +17,9 @@
 }
 
 @layer components {
+  .btn {
+    @apply rounded-lg px-2 py-1 text-white;
+  }
   .btn-danger {
     @apply bg-danger hover:bg-danger-hover;
   }

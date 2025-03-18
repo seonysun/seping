@@ -25,13 +25,15 @@ function LockScreen() {
         allowSlidePrev={false}
         onReachEnd={() => navigate('home')}
         threshold={50}
-        style={{ height: '100vh' }}
+        style={{ height: '100vh', zIndex: 50 }}
       >
-        <SwiperSlide className="flex flex-col items-center justify-around bg-[#ac72b2]">
-          <p className="text-4xl text-white">seping.</p>
-          <div className="animate-spark cursor-pointer text-[#553858]">
-            <LuChevronUp size="80" />
-            <p className="text-xl">시작하기</p>
+        <SwiperSlide className="bg-[#ac72b2]">
+          <div className="flex h-screen flex-col items-center justify-around">
+            <p className="text-4xl text-white">seping.</p>
+            <div className="animate-spark cursor-pointer text-[#553858]">
+              <LuChevronUp size="80" />
+              <p className="text-xl">시작하기</p>
+            </div>
           </div>
         </SwiperSlide>
         <SwiperSlide />
