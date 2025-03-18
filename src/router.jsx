@@ -5,8 +5,10 @@ import App from './App';
 const Landing = lazy(() => import('./pages/Home/Landing'));
 const Home = lazy(() => import('./pages/Home/Home'));
 const List = lazy(() => import('./pages/List/List'));
-const Search = lazy(() => import('./pages/Search'));
+const Search = lazy(() => import('./pages/Search/Search'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const SignIn = lazy(() => import('./pages/Login/SignIn'));
+const SignUp = lazy(() => import('./pages/Login/SignUp'));
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +32,8 @@ export const router = createBrowserRouter([
       { path: 'search', element: <Search /> },
       { path: 'chat', element: <Home /> },
       { path: 'map', element: <Home /> },
+      { path: 'signin', element: <SignIn /> },
+      { path: 'signup', element: <SignUp /> },
     ],
   },
 ]);
