@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { IoClose } from 'react-icons/io5';
-import VideoCard from '../components/Card/VideoCard';
+import ModalCard from '../components/Card/ModalCard';
 
 function SideModal({ setIsOpen, title, direction = 'left', itemList }) {
   return (
@@ -25,7 +25,7 @@ function SideModal({ setIsOpen, title, direction = 'left', itemList }) {
         <div className="flex flex-col px-3">
           {itemList &&
             itemList.map((item) => (
-              <VideoCard key={item.id} item={item} size="w-full" />
+              <ModalCard key={item.id} item={item} size="w-full" />
             ))}
         </div>
       </div>
