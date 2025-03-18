@@ -1,15 +1,24 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import Home from './pages/Home/Home';
-import Landing from './pages/Home/Landing';
-import List from './pages/List/List';
-import Search from './pages/Search';
 
+const Landing = lazy(() => import('./pages/Home/Landing'));
+const Home = lazy(() => import('./pages/Home/Home'));
+const List = lazy(() => import('./pages/List/List'));
+const Search = lazy(() => import('./pages/Search/Search'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const SignIn = lazy(() => import('./pages/Login/SignIn'));
+const SignUp = lazy(() => import('./pages/Login/SignUp'));
 
 export const router = createBrowserRouter([
-  { path: '/', element: <Landing /> },
+  {
+    path: '/',
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Landing />
+      </Suspense>
+    ),
+  },
   {
     path: '/home',
     element: <App />,
@@ -23,6 +32,8 @@ export const router = createBrowserRouter([
       { path: 'search', element: <Search /> },
       { path: 'chat', element: <Home /> },
       { path: 'map', element: <Home /> },
+      { path: 'signin', element: <SignIn /> },
+      { path: 'signup', element: <SignUp /> },
     ],
   },
 ]);

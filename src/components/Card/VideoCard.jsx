@@ -1,6 +1,6 @@
 import FavoriteButton from '../Button/FavoriteButton';
 
-function VideoCard({ item, size = 'w-1/2 md:w-1/3' }) {
+function VideoCard({ item, size = 'w-[48%] md:w-[30%]' }) {
   return (
     <section className={`${size} mb-2 overflow-hidden px-2`}>
       <div className="py-2">
@@ -10,14 +10,14 @@ function VideoCard({ item, size = 'w-1/2 md:w-1/3' }) {
           className="size-full rounded-xl"
         />
       </div>
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between p-2">
         <p className="flex flex-col">
           <span className="text-sm">{item.category}</span>
           <span className="font-semibold">{item.title}</span>
         </p>
         <FavoriteButton id={item.id} />
       </div>
-      <p className="text-sm">메뉴</p>
+      <p className="px-2 text-sm">메뉴</p>
     </section>
   );
 }
