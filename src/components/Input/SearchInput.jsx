@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
-function SearchInput({ size, message = '검색어를 입력하세요' }) {
+function SearchInput({ size, message = '검색어를 입력하세요', setSearchOpen }) {
   const [inputValue, setInputValue] = useState('');
 
   const navigate = useNavigate();
@@ -24,10 +24,11 @@ function SearchInput({ size, message = '검색어를 입력하세요' }) {
         <IoSearch size="20" color="gray" />
       </button>
       <input
-        className="w-full bg-transparent outline-none"
+        className="w-full bg-transparent text-black outline-none"
         placeholder={message}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
+        onBlur={() => setTimeout(() => setSearchOpen(false), 100)}
       />
     </form>
   );

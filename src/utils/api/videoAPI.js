@@ -10,12 +10,20 @@ const videoAPI = {
     return data;
   },
 
-  allList: async () => await instance.get('?skip=10&limit=0'),
-  categoryList: async ({ category, params = {} }) =>
-    await instance.get(`/category/${category}`, {
+  allList: async () => {
+    const { data } = await instance.get('?limit=0');
+    return data;
+  },
+  categoryList: async ({ category, params = {} }) => {
+    const { data } = await instance.get(`/category/${category}`, {
       params,
-    }),
-  searchList: async () => await instance.get('/search'),
+    });
+    return data;
+  },
+  searchList: async (input) => {
+    const { data } = await instance.get(`/search?q=${input}`);
+    return data;
+  },
 };
 
 export default videoAPI;

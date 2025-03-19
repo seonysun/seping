@@ -23,10 +23,11 @@ const videoOptions = {
       queryKey: ['videos', 'category'],
       queryFn: () => videoAPI.categoryList(),
     }),
-  searchList: () =>
+  searchList: (input) =>
     queryOptions({
-      queryKey: ['videos', 'search'],
-      queryFn: () => videoAPI.searchList(),
+      queryKey: ['videos', 'search', input],
+      queryFn: () => videoAPI.searchList(input),
+      enabled: !!input,
     }),
 };
 

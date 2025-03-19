@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useResize from '../hooks/useResize';
 
 const MENU_TABS = [
@@ -12,27 +11,23 @@ const MENU_TABS = [
   { to: 'search', tab: '검색' },
 ];
 
-const NAV_STYLE = {
-  mobile:
-    'z-50 flex justify-around p-3 fixed bottom-0 left-0 w-full bg-white border-t text-black',
-  desk: 'mx-3 flex items-start gap-3',
-};
-
 function Navbar({ setSearchOpen }) {
   const navigate = useNavigate();
-
-  const [selectedMenu, setSelectedMenu] = useState(null);
+  const location = useLocation();
+  const isMobile = useResize();
 
   const handleMenu = (menu) => {
-    selectedMenu === menu.tab
-      ? setSelectedMenu(null)
-      : setSelectedMenu(menu.tab);
-
-    menu.to === 'search' ? setSearchOpen((prev) => !prev) : navigate(menu.to);
+    if (menu.to === 'search') setSearchOpen((prev) => !prev);
+    else {
+      setSearchOpen(false);
+      navigate(menu.to);
+    }
   };
 
   return (
-    <ul className={`${useResize() ? NAV_STYLE.mobile : NAV_STYLE.desk}`}>
+    <ul
+      className={`flex ${isMobile ? 'fixed bottom-0 left-0 z-30 w-full justify-around border-t bg-white p-3 text-black' : 'mx-3 items-start gap-3'}`}
+    >
       {MENU_TABS.map((menu) => (
         <li
           key={menu.tab}
@@ -40,7 +35,7 @@ function Navbar({ setSearchOpen }) {
             handleMenu(menu);
           }}
           className={`${
-            selectedMenu === menu.tab
+            location.pathname.includes(menu.to)
               ? 'border-y border-purple font-bold text-purple'
               : 'font-medium'
           } cursor-pointer`}
