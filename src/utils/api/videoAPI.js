@@ -3,6 +3,7 @@ import { instance } from './instance';
 import { MAX_LIST_LENGTH } from '../../constants/uiData';
 
 const LIMIT = MAX_LIST_LENGTH.HOME.ITEMS;
+const CATE = MAX_LIST_LENGTH.LIST.ITEMS;
 
 const videoAPI = {
   infiniteList: async ({ pageParam = 0, limit = LIMIT }) => {
@@ -14,14 +15,21 @@ const videoAPI = {
     const { data } = await instance.get('?limit=0');
     return data;
   },
-  categoryList: async ({ category, params = {} }) => {
+  categoryList: async ({ pageParam = 0, limit = CATE, category }) => {
     const { data } = await instance.get(`/category/${category}`, {
-      params,
+      params: {
+        skip: pageParam,
+        limit,
+      },
     });
     return data;
   },
   searchList: async (input) => {
-    const { data } = await instance.get(`/search?q=${input}`);
+    const { data } = await instance.get('/search', {
+      params: {
+        q: input,
+      },
+    });
     return data;
   },
 };

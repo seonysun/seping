@@ -11,7 +11,7 @@ function SearchInput({ size, message = '검색어를 입력하세요', setSearch
     e.preventDefault();
     if (!inputValue.trim()) return;
 
-    navigate(`search?input=${inputValue}`);
+    navigate(`/home/search?input=${inputValue}`);
     setInputValue('');
   };
 
