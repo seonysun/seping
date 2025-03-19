@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Input from '../../components/Input/Input';
+import SignInput from '../../components/Input/SignInput';
 import useFormValidation from '../../hooks/useFormValidation';
 
 function SignIn() {
@@ -31,9 +31,9 @@ function SignIn() {
       <p className="mb-4 text-3xl font-semibold">로그인</p>
       <form
         onSubmit={handleLogin}
-        className="flex w-1/3 flex-col items-center gap-2"
+        className="flex w-1/3 min-w-80 flex-col items-center gap-2"
       >
-        <Input
+        <SignInput
           name="email"
           label="이메일"
           type="email"
@@ -42,7 +42,7 @@ function SignIn() {
           errorMessage={error.email}
           onChange={handleInput}
         />
-        <Input
+        <SignInput
           name="password"
           label="비밀번호"
           type="password"
