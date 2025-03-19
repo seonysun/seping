@@ -3,6 +3,7 @@ import videoAPI from './videoAPI';
 import { MAX_LIST_LENGTH } from '../../constants/uiData';
 
 const LIMIT = MAX_LIST_LENGTH.HOME.ITEMS;
+const CATE = MAX_LIST_LENGTH.LIST.ITEMS;
 
 const videoOptions = {
   infiniteList: () => ({
@@ -18,15 +19,24 @@ const videoOptions = {
       queryKey: ['videos', 'all'],
       queryFn: () => videoAPI.allList(),
     }),
-  categoryList: () =>
+  categoryList: (category) =>
     queryOptions({
-      queryKey: ['videos', 'category'],
-      queryFn: () => videoAPI.categoryList(),
+      queryKey: ['videos', 'category', category],
+      queryFn: ({ pageParam = 0 }) =>
+        videoAPI.categoryList({ pageParam, limit: CATE, category }),
+      getNextPageParam: (lastPage, allPages) =>
+        lastPage.products.length > 0 ? allPages.length * LIMIT : undefined,
     }),
-  searchList: () =>
+  searchList: (input) =>
     queryOptions({
-      queryKey: ['videos', 'search'],
-      queryFn: () => videoAPI.searchList(),
+      queryKey: ['videos', 'search', input],
+      queryFn: () => videoAPI.searchList(input),
+      enabled: !!input,
+    }),
+  productDetail: (id) =>
+    queryOptions({
+      queryKey: ['videos', id],
+      queryFn: () => videoAPI.productDetail(id),
     }),
 };
 

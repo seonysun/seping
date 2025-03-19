@@ -3,18 +3,18 @@ import { useState } from 'react';
 import { FaRegHeart, FaUser } from 'react-icons/fa';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, SearchInput, ToggleButton } from '../components';
 import Navbar from './Navbar';
-import useFetch from '../hooks/useFetch';
 import { loginSlice } from '../redux/Slice/loginSlice';
 import { modalSlice } from '../redux/Slice/modalSlice';
-import videoAPI from '../utils/api/videoAPI';
 
 function Header() {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [searchOpen, setSearchOpen] = useState(false);
+  const isHiddenPage = !!location.pathname.match(/\/(list|search)/);
 
   return (
     <header className="fixed top-0 w-full bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
@@ -38,11 +38,13 @@ function Header() {
         <UserNav />
         <ToggleButton />
       </div>
-      <div
-        className={`flex transition-all duration-300 ${searchOpen ? 'block' : 'hidden'}`}
-      >
-        <SearchInput setSearchOpen={setSearchOpen} />
-      </div>
+      {!isHiddenPage && (
+        <div
+          className={`flex transition-all duration-300 ${searchOpen ? 'block' : 'hidden'}`}
+        >
+          <SearchInput setSearchOpen={setSearchOpen} />
+        </div>
+      )}
     </header>
   );
 }
@@ -54,11 +56,11 @@ function UserNav() {
   const login = useSelector((state) => state.login);
 
   // 수정 필요함
-  const likeItemsId = useSelector((state) => state.like);
-  const { data } = useFetch(() => videoAPI.allList());
-  const likeList = data.length
-    ? data.filter((item) => likeItemsId.includes(item.id))
-    : [];
+  // const likeItemsId = useSelector((state) => state.like);
+  // const { data } = useFetch(() => videoAPI.allList());
+  // const likeList = data.length
+  //   ? data.filter((item) => likeItemsId.includes(item.id))
+  //   : [];
 
   const toggleLogout = () => {
     alert('로그아웃 되었습니다');
