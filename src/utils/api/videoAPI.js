@@ -32,6 +32,10 @@ const videoAPI = {
     });
     return data;
   },
+  productDetail: async (id) => {
+    const { data } = await instance.get(`/${id}`);
+    return data;
+  },
 };
 
 export default videoAPI;

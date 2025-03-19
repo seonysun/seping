@@ -1,8 +1,18 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useNavigate } from 'react-router-dom';
 import FavoriteButton from '../Button/FavoriteButton';
 
 function VideoCard({ item, size = 'w-[48%] md:w-[30%]' }) {
+  const navigate = useNavigate();
+
   return (
-    <section className={`${size} mb-2 overflow-hidden px-2`}>
+    <section
+      className={`${size} mb-2 overflow-hidden px-2`}
+      onClick={() => {
+        navigate(`/home/detail/${item.id}`);
+      }}
+    >
       <div className="py-2">
         <img
           src={item.thumbnail}

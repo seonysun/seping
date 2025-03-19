@@ -33,6 +33,11 @@ const videoOptions = {
       queryFn: () => videoAPI.searchList(input),
       enabled: !!input,
     }),
+  productDetail: (id) =>
+    queryOptions({
+      queryKey: ['videos', id],
+      queryFn: () => videoAPI.productDetail(id),
+    }),
 };
 
 export default videoOptions;
