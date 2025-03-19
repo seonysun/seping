@@ -9,6 +9,13 @@ export const SOCIAL_ICONS = [
 
 export const MAX_LIST_LENGTH = {
   HOME: {
+    LANDING: 6,
     ITEMS: 12,
+  },
+  LIST: {
+    ITEMS: 6,
+  },
+  SEARCH: {
+    ITEMS: 6,
   },
 };

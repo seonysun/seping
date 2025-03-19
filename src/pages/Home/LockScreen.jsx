@@ -2,13 +2,14 @@ import { LuChevronUp } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CardSkeleton from '../../components/Card/CardSkeleton';
+import { MAX_LIST_LENGTH } from '../../constants/uiData';
 import { Navbar } from '../../layout';
 import 'swiper/css';
 
 function SwipeContent() {
   return (
     <div className="absolute flex size-full flex-col">
-      <CardSkeleton num={6} />
+      <CardSkeleton num={MAX_LIST_LENGTH.HOME.LANDING} />
       <Navbar />
     </div>
   );
