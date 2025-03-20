@@ -7,6 +7,7 @@ import { ThemeProvider } from './hooks/useTheme';
 import { store } from './redux/store';
 import { router } from './router';
 import './styles/main.css';
+import { SupabaseProvider } from './supabase/context';
 
 const query = new QueryClient();
 
@@ -15,7 +16,9 @@ createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <QueryClientProvider client={query}>
         <ThemeProvider>
-          <RouterProvider router={router} />
+          <SupabaseProvider>
+            <RouterProvider router={router} />
+          </SupabaseProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </Provider>
