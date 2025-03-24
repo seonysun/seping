@@ -19,7 +19,7 @@ function Home() {
         )}
       </div>
       {isFetchingNextPage && <CardSkeleton num={MAX_LIST_LENGTH.HOME.ITEMS} />}
-      <div ref={observerRef} className="h-3" />
+      <div ref={observerRef} className="h-32" />
     </>
   );
 }
