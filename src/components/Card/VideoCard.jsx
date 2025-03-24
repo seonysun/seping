@@ -1,10 +1,13 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useNavigate } from 'react-router-dom';
+import useLazyImage from '../../hooks/useLazyImage';
 import FavoriteButton from '../Button/FavoriteButton';
 
 function VideoCard({ item, size = 'w-[48%] md:w-[30%]' }) {
   const navigate = useNavigate();
+  const imgRef = useLazyImage();
 
   return (
     <section
@@ -15,8 +18,13 @@ function VideoCard({ item, size = 'w-[48%] md:w-[30%]' }) {
     >
       <div className="py-2">
         <img
-          src={item.thumbnail}
+          ref={imgRef}
+          src="/src/assets/images/defaultImg.png"
+          data-src={item.thumbnail}
           alt={item.title}
+          onError={(e) => {
+            e.currentTarget.src = '/src/assets/images/defaultImg.png';
+          }}
           className="size-full rounded-xl"
         />
       </div>

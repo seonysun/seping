@@ -2,12 +2,15 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { FavoriteButton } from '../../components';
 import DetailSkeleton from '../../components/Card/DetailSkeleton';
+import useLazyImage from '../../hooks/useLazyImage';
 import useResize from '../../hooks/useResize';
 import videoOptions from '../../utils/api/videoOptions';
 
 function Detail() {
   const selectedId = useParams().id;
   const isMobile = useResize();
+
+  const imgRef = useLazyImage();
 
   const { data, isLoading } = useQuery(videoOptions.productDetail(selectedId));
 
@@ -28,7 +31,9 @@ function Detail() {
         </div>
         <div className={`flex gap-5 ${isMobile ? 'flex-col' : ''}`}>
           <img
-            src={data.images}
+            ref={imgRef}
+            src="/src/assets/images/defaultImg.png"
+            data-src={data.images}
             alt={data.title}
             className={isMobile ? 'w-full' : 'w-1/2'}
           />
