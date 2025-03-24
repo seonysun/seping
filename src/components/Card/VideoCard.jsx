@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import useLazyImage from '../../hooks/useLazyImage';
 import FavoriteButton from '../Button/FavoriteButton';
 
-function VideoCard({ item, size = 'w-[48%] md:w-[30%]' }) {
+function VideoCard({ item, size = 'w-[30%] md:w-[23%]' }) {
   const navigate = useNavigate();
   const imgRef = useLazyImage();
 

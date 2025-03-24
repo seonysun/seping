@@ -9,20 +9,21 @@ import videoOptions from '../../utils/api/videoOptions';
 
 function List() {
   const [category, setCategory] = useState(LIST_MENU[0]);
-  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } =
+  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useInfiniteQuery(videoOptions.categoryList(category.cate));
 
   const observerRef = useIntersectionObserver({ hasNextPage, fetchNextPage });
 
+  if (isLoading) return <CardSkeleton num={MAX_LIST_LENGTH.LIST.ITEMS} />;
+
   return (
     <div className="px-4 md:px-[10%]">
       <ListNav category={category} setCategory={setCategory} />
-      <div className="my-3 flex flex-wrap justify-center gap-4 pt-[96px]">
+      <div className="my-3 flex flex-wrap gap-4 pt-[96px]">
         {data?.pages.flatMap((page) =>
           page.products.map((item) => <VideoCard key={item.id} item={item} />),
         )}
       </div>
-      {isFetchingNextPage && <CardSkeleton num={MAX_LIST_LENGTH.LIST.ITEMS} />}
       <div ref={observerRef} className="h-3" />
     </div>
   );

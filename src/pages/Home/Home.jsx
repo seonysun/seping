@@ -13,7 +13,7 @@ function Home() {
 
   return (
     <>
-      <div className="my-3 flex flex-wrap justify-center gap-4 px-4 md:px-[10%]">
+      <div className="my-3 flex flex-wrap gap-4 px-4 md:px-[10%]">
         {data?.pages.flatMap((page) =>
           page.products.map((item) => <VideoCard key={item.id} item={item} />),
         )}
