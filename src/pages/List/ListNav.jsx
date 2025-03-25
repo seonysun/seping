@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchInput from '../../components/Input/SearchInput';
 import { LIST_MENU } from '../../constants/uiData';
 
-function ListNav({ category, setCategory }) {
+function ListNav({ playlist, setPlaylist }) {
   const navigate = useNavigate();
 
   return (
@@ -14,11 +14,11 @@ function ListNav({ category, setCategory }) {
           <li
             key={menu.tab}
             onClick={() => {
-              setCategory(menu);
+              setPlaylist(menu);
               navigate(`/home/list/${menu.to}`);
             }}
             className={
-              category.tab === menu.tab
+              playlist.tab === menu.tab
                 ? 'font-bold'
                 : 'font-medium text-gray-light'
             }
@@ -27,7 +27,7 @@ function ListNav({ category, setCategory }) {
           </li>
         ))}
       </ul>
-      <SearchInput message={`${category.tab}에서 검색`} />
+      <SearchInput message={`${playlist.tab}에서 검색`} />
     </nav>
   );
 }

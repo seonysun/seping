@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import useLazyImage from '../../hooks/useLazyImage';
 import FavoriteButton from '../Button/FavoriteButton';
 
-function VideoCard({ item, size = 'w-[30%] md:w-[23%]' }) {
+function YoutubeCard({ item, size = 'w-[47%] md:w-[30%]' }) {
   const navigate = useNavigate();
   const imgRef = useLazyImage();
 
@@ -20,7 +20,7 @@ function VideoCard({ item, size = 'w-[30%] md:w-[23%]' }) {
         <img
           ref={imgRef}
           src="/src/assets/images/defaultImg.png"
-          data-src={item.thumbnail}
+          data-src={item.thumbnails.standard.url}
           alt={item.title}
           onError={(e) => {
             e.currentTarget.src = '/src/assets/images/defaultImg.png';
@@ -30,14 +30,14 @@ function VideoCard({ item, size = 'w-[30%] md:w-[23%]' }) {
       </div>
       <div className="flex items-start justify-between p-2">
         <p className="flex flex-col">
-          <span className="text-sm">{item.category}</span>
-          <span className="font-semibold">{item.title}</span>
+          <span className="text-sm">{item.channelTitle}</span>
+          <span className="line-clamp-2 font-semibold">{item.title}</span>
         </p>
         <FavoriteButton id={item.id} />
       </div>
-      <p className="px-2 text-sm">메뉴</p>
+      <p className="px-2 text-sm">{item.publishedAt.split('T')[0]}</p>
     </section>
   );
 }
 
-export default VideoCard;
+export default YoutubeCard;

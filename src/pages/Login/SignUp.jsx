@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignInput from '../../components/Input/SignInput';
 import useFormValidation from '../../hooks/useFormValidation';
+import { useSupabaseAuth } from '../../supabase';
 
 function SignUpForm() {
   const navigate = useNavigate();
@@ -24,8 +25,14 @@ function SignUpForm() {
   };
   useFormValidation(values, setError, 'signup');
 
+  const { signUp } = useSupabaseAuth();
   const handleSignUp = async (e) => {
     e.preventDefault();
+
+    const { email, password, name: userName } = values;
+    await signUp({ email, password, userName });
+    alert('정상적으로 가입 신청되었습니다. 메일을 확인해주세요!');
+
     navigate('/home/signin');
   };
 

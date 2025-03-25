@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import SignInput from '../../components/Input/SignInput';
 import useFormValidation from '../../hooks/useFormValidation';
+import { loginSlice } from '../../redux/Slice/loginSlice';
+import { useSupabaseAuth } from '../../supabase';
 
 function SignIn() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [values, setValues] = useState({
     email: '',
@@ -20,10 +24,24 @@ function SignIn() {
   };
   useFormValidation(values, setError, 'signin');
 
+  const { login, getUserInfo, loginWithGoogle } = useSupabaseAuth();
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    const { email, password } = values;
+    await login({ email, password });
+
+    const userInfo = await getUserInfo();
+    dispatch(loginSlice.actions.login(userInfo));
+    alert(`${userInfo.user.userName}님 로그인 되었습니다!`);
+
     navigate('/');
+  };
+
+  const handleSocialLogin = async (provider) => {
+    if (provider === 'google') {
+      await loginWithGoogle();
+    }
   };
 
   return (
@@ -53,6 +71,13 @@ function SignIn() {
         />
         <button type="submit" className="btn btn-purple mt-2 w-full">
           로그인
+        </button>
+        <button
+          type="button"
+          onClick={() => handleSocialLogin('google')}
+          className="btn btn-blue w-full"
+        >
+          Google
         </button>
       </form>
       <p className="text-sm">

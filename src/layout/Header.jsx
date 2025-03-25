@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaRegHeart, FaUser } from 'react-icons/fa';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,10 +8,23 @@ import { Button, SearchInput, ToggleButton } from '../components';
 import Navbar from './Navbar';
 import { loginSlice } from '../redux/Slice/loginSlice';
 import { modalSlice } from '../redux/Slice/modalSlice';
+import { useSupabaseAuth } from '../supabase';
 
 function Header() {
   const dispatch = useDispatch();
   const location = useLocation();
+
+  const { getUserInfo } = useSupabaseAuth();
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const userInfo = await getUserInfo();
+      if (userInfo?.user) {
+        dispatch(loginSlice.actions.login(userInfo));
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   const [searchOpen, setSearchOpen] = useState(false);
   const isHiddenPage = !!location.pathname.match(/\/(list|search)/);
@@ -52,19 +65,21 @@ function Header() {
 function UserNav() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const login = useSelector((state) => state.login);
-
   // 수정 필요함
   // const likeItemsId = useSelector((state) => state.like);
   // const { data } = useFetch(() => videoAPI.allList());
   // const likeList = data.length
   //   ? data.filter((item) => likeItemsId.includes(item.id))
   //   : [];
+  const login = useSelector((state) => state.login);
 
+  const { logout } = useSupabaseAuth();
   const toggleLogout = () => {
     alert('로그아웃 되었습니다');
+
     dispatch(loginSlice.actions.logout());
+    logout();
+
     navigate('/');
   };
 

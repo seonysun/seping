@@ -1,16 +1,24 @@
+/* eslint-disable no-param-reassign */
 import { useDispatch } from 'react-redux';
+import useLazyImage from '../../hooks/useLazyImage';
 import { likeSlice } from '../../redux/Slice/likeSlice';
 import Button from '../Button/Button';
 
 function ModalCard({ item }) {
   const dispatch = useDispatch();
+  const imgRef = useLazyImage();
 
   return (
     <section className="flex gap-2 p-2">
       <div className="py-2">
         <img
-          src={item.thumbnail}
+          ref={imgRef}
+          src="/src/assets/images/defaultImg.png"
+          data-src={item.thumbnail}
           alt={item.title}
+          onError={(e) => {
+            e.currentTarget.src = '/src/assets/images/defaultImg.png';
+          }}
           className="size-28 md:size-44"
         />
       </div>
