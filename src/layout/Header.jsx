@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-expressions */
 import { useEffect, useState } from 'react';
-import { FaRegHeart, FaUser } from 'react-icons/fa';
-import { RxHamburgerMenu } from 'react-icons/rx';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Icon from '../assets/icons/common/Icon';
 import { Button, SearchInput, ToggleButton } from '../components';
 import Navbar from './Navbar';
 import { loginSlice } from '../redux/Slice/loginSlice';
@@ -32,7 +31,8 @@ function Header() {
   return (
     <header className="fixed top-0 w-full bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
       <div className="flex h-[88px] items-center border-b">
-        <RxHamburgerMenu
+        <Icon
+          icon="RxHamburgerMenu"
           size="28"
           className="cursor-pointer"
           onClick={() =>
@@ -85,7 +85,8 @@ function UserNav() {
 
   return (
     <nav className="mx-2 flex items-center gap-3">
-      <FaRegHeart
+      <Icon
+        icon="FaRegHeart"
         size="22"
         className="cursor-pointer"
         onClick={() =>
@@ -101,7 +102,9 @@ function UserNav() {
           )
         }
       />
-      {login.isLogin && <FaUser size="22" className="cursor-pointer" />}
+      {login.isLogin && (
+        <Icon icon="FaUser" size="22" className="cursor-pointer" />
+      )}
       <Button
         text={login.isLogin ? '로그아웃' : '로그인'}
         color="btn-purple"

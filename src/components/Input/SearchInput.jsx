@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { IoSearch } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
+import Icon from '../../assets/icons/common/Icon';
 
 function SearchInput({ size, message = '검색어를 입력하세요', setSearchOpen }) {
   const [inputValue, setInputValue] = useState('');
@@ -21,7 +21,7 @@ function SearchInput({ size, message = '검색어를 입력하세요', setSearch
       onSubmit={searchSubmit}
     >
       <button type="submit">
-        <IoSearch size="20" color="gray" />
+        <Icon icon="IoSearch" size="20" color="gray" />
       </button>
       <input
         className="w-full bg-transparent text-black outline-none"
