@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useResize from '../hooks/useResize';
 
 const MENU_TABS = [
-  { to: 'list', tab: '목록' },
+  { to: 'list/poong', tab: '목록' },
   { to: 'map', tab: '지도' },
   { to: 'chat', tab: '커뮤니티' },
   { to: 'search', tab: '검색' },
