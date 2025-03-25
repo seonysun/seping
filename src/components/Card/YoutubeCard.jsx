@@ -20,7 +20,9 @@ function YoutubeCard({ item, size = 'w-[47%] md:w-[30%]' }) {
         <img
           ref={imgRef}
           src="/src/assets/images/defaultImg.png"
-          data-src={item.thumbnails.standard.url}
+          data-src={
+            item.thumbnails.standard?.url || '/src/assets/images/defaultImg.png'
+          }
           alt={item.title}
           onError={(e) => {
             e.currentTarget.src = '/src/assets/images/defaultImg.png';
