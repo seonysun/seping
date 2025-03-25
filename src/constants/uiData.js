@@ -34,7 +34,7 @@ export const LIST_MENU = [
     tab: '먹을텐데',
     playlist: 'PLuMuHAJh9g_Py_PSm8gmHdlcil6CQ9QCM',
   },
-  { to: 'zzu', tab: '쯔양', playlist: 'UUfpaSruWW3S4dibonKXENjA' },
+  { to: 'tzu', tab: '쯔양', playlist: 'UUfpaSruWW3S4dibonKXENjA' },
   {
     to: 'choe',
     tab: '최자로드',

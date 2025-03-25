@@ -13,14 +13,16 @@ function YoutubeCard({ item, size = 'w-[47%] md:w-[30%]' }) {
     <section
       className={`${size} mb-2 overflow-hidden px-2`}
       onClick={() => {
-        navigate(`/home/detail/${item.id}`);
+        navigate(`/home/video/${item.resourceId.videoId}`);
       }}
     >
       <div className="py-2">
         <img
           ref={imgRef}
           src="/src/assets/images/defaultImg.png"
-          data-src={item.thumbnails.standard.url}
+          data-src={
+            item.thumbnails.standard?.url || '/src/assets/images/defaultImg.png'
+          }
           alt={item.title}
           onError={(e) => {
             e.currentTarget.src = '/src/assets/images/defaultImg.png';
@@ -33,7 +35,7 @@ function YoutubeCard({ item, size = 'w-[47%] md:w-[30%]' }) {
           <span className="text-sm">{item.channelTitle}</span>
           <span className="line-clamp-2 font-semibold">{item.title}</span>
         </p>
-        <FavoriteButton id={item.id} />
+        <FavoriteButton id={item.resourceId.videoId} />
       </div>
       <p className="px-2 text-sm">{item.publishedAt.split('T')[0]}</p>
     </section>

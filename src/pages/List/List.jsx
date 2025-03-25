@@ -27,17 +27,19 @@ function List() {
   return (
     <div className="px-4 md:px-[10%]">
       <ListNav playlist={playlist} setPlaylist={setPlaylist} />
-      {isLoading ? (
-        <CardSkeleton num={MAX_LIST_LENGTH.VIDEO.ITEMS} />
-      ) : (
-        <div className="my-3 flex flex-wrap gap-4 pt-[96px]">
-          {data?.pages.flatMap((page) =>
-            page.items.map((item) => (
-              <YoutubeCard key={item.id} item={item.snippet} />
-            )),
-          )}
-        </div>
-      )}
+      <div className="my-3 pt-[96px]">
+        {isLoading ? (
+          <CardSkeleton num={MAX_LIST_LENGTH.VIDEO.ITEMS} />
+        ) : (
+          <div className="flex flex-wrap justify-around gap-4">
+            {data?.pages.flatMap((page) =>
+              page.items.map((item) => (
+                <YoutubeCard key={item.id} item={item.snippet} />
+              )),
+            )}
+          </div>
+        )}
+      </div>
       {isFetchingNextPage && <CardSkeleton num={MAX_LIST_LENGTH.VIDEO.ITEMS} />}
       <div ref={observerRef} className="h-3" />
     </div>

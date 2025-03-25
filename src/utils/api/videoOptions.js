@@ -42,6 +42,11 @@ const videoOptions = {
         }),
       getNextPageParam: (lastPage) => lastPage.nextPageToken || undefined,
     }),
+  playVideo: (videoId) =>
+    queryOptions({
+      queryKey: ['videos', videoId],
+      queryFn: () => videoAPI.playVideo(videoId),
+    }),
 };
 
 export default videoOptions;
