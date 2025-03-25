@@ -42,6 +42,15 @@ const videoAPI = {
       nextPageToken: data.nextPageToken ?? null,
     };
   },
+  playVideo: async (id) => {
+    const { data } = await youtubeInstance.get('/videos', {
+      params: {
+        id,
+        part: 'snippet,statistics',
+      },
+    });
+    return data.items[0];
+  },
 };
 
 export default videoAPI;
