@@ -25,6 +25,16 @@ const chatAPI = {
       return data;
     },
   }),
+  updateViews: (postId) => ({
+    queryKey: ['updateViews', postId],
+    queryFn: async () => {
+      const { data } = await instance.patch(`/posts/${postId}`, {
+        views: 1,
+      });
+      return data;
+    },
+  }),
+
   getComments: (postId) => ({
     queryKey: ['comments', postId],
     queryFn: async () => {
