@@ -5,9 +5,11 @@ import App from './App';
 const Landing = lazy(() => import('./pages/Home/Landing'));
 const Home = lazy(() => import('./pages/Home/Home'));
 const List = lazy(() => import('./pages/List/List'));
-const Detail = lazy(() => import('./pages/List/Detail'));
+const Detail = lazy(() => import('./pages/Home/Detail'));
 const VideoDetail = lazy(() => import('./pages/List/VideoDetail'));
 const Search = lazy(() => import('./pages/Search/Search'));
+const ChatList = lazy(() => import('./pages/Chat/ChatList'));
+const Chat = lazy(() => import('./pages/Chat/Chat'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const SignIn = lazy(() => import('./pages/Login/SignIn'));
 const SignUp = lazy(() => import('./pages/Login/SignUp'));
@@ -34,7 +36,8 @@ export const router = createBrowserRouter([
       { path: 'detail/:id', element: <Detail /> },
       { path: 'video/:id', element: <VideoDetail /> },
       { path: 'search', element: <Search /> },
-      { path: 'chat', element: <Home /> },
+      { path: 'chat', element: <ChatList /> },
+      { path: 'chat/:id', element: <Chat /> },
       { path: 'map', element: <Home /> },
       { path: 'signin', element: <SignIn /> },
       { path: 'signup', element: <SignUp /> },

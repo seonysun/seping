@@ -1,6 +1,6 @@
-import { LuChevronUp } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Icon from '../../assets/icons/common/Icon';
 import CardSkeleton from '../../components/Card/CardSkeleton';
 import { MAX_LIST_LENGTH } from '../../constants/uiData';
 import { Navbar } from '../../layout';
@@ -32,7 +32,7 @@ function LockScreen() {
           <div className="flex h-screen flex-col items-center justify-around">
             <p className="text-4xl text-white">seping.</p>
             <div className="animate-spark cursor-pointer text-[#553858]">
-              <LuChevronUp size="80" />
+              <Icon icon="LuChevronUp" size="80" />
               <p className="text-xl">시작하기</p>
             </div>
           </div>
