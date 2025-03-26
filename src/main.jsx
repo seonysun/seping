@@ -9,6 +9,11 @@ import { router } from './router';
 import './styles/main.css';
 import { SupabaseProvider } from './supabase/context';
 
+if (process.env.NODE_ENV === 'development') {
+  const { worker } = await import('./mocks/browser');
+  worker.start();
+}
+
 const query = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
