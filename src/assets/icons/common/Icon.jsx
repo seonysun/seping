@@ -1,10 +1,12 @@
-import { FaHeart, FaRegHeart, FaUser } from 'react-icons/fa';
 import {
   FaChevronDown,
-  FaChevronUp,
   FaChevronLeft,
   FaChevronRight,
-} from 'react-icons/fa6';
+  FaChevronUp,
+  FaHeart,
+  FaRegHeart,
+  FaUser,
+} from 'react-icons/fa';
 import {
   IoHeart,
   IoHeartOutline,
