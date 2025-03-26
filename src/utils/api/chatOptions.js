@@ -12,7 +12,7 @@ const chatOptions = {
   getChatList: (pageParam = 0, limit = 10) => ({
     queryKey: ['chats', pageParam],
     queryFn: async () => {
-      const { data } = await instance.get('/posts', {
+      const { data } = await instance.get('/api/posts', {
         params: { pageParam, limit },
       });
       return data;
@@ -21,7 +21,7 @@ const chatOptions = {
   getUsers: () => ({
     queryKey: ['users'],
     queryFn: async () => {
-      const { data } = await instance.get('/users');
+      const { data } = await instance.get('/api/users');
       return data;
     },
   }),
@@ -34,7 +34,7 @@ const chatOptions = {
   }),
 
   updateViews: async (postId, currentViews) => {
-    const { data } = await instance.patch(`/posts/${postId}`, {
+    const { data } = await instance.patch(`/api/posts/${postId}/views`, {
       views: currentViews + 1,
     });
     return data;
