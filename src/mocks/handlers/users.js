@@ -2,7 +2,7 @@ import { delay, http, HttpResponse } from 'msw';
 import { users } from '../datas/users';
 
 const userHandler = [
-  http.get('/api/users', async () => {
+  http.get('http://localhost:3000/api/users', async () => {
     await delay(1000);
     return HttpResponse.json(users, { status: 200 });
   }),
