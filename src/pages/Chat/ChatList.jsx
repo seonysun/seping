@@ -1,21 +1,46 @@
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import chatAPI from '../../utils/api/chatAPI';
+import chatOptions from '../../utils/api/chatOptions';
 
 function ChatList() {
   const navigate = useNavigate();
 
+  const queryClient = useQueryClient();
   const { data: posts, isLoading: postsLoading } = useQuery(
-    chatAPI.getChatList(),
+    chatOptions.getChatList(),
   );
-  const { data: users, isLoading: usersLoading } = useQuery(chatAPI.getUsers());
+  const { data: users, isLoading: usersLoading } = useQuery(
+    chatOptions.getUsers(),
+  );
 
   const getUsername = (authorId) => {
     const user = users.find((user) => user.id === authorId);
     return user ? user.username : '탈퇴한 회원입니다';
+  };
+
+  const updateViews = useMutation({
+    mutationFn: async ({ postId, currentViews }) =>
+      chatOptions.updateViews(postId, currentViews),
+    onSuccess: (updatedPost) => {
+      queryClient.setQueryData(['chats', 0], (oldPosts) =>
+        oldPosts.map((post) =>
+          post.id === updatedPost.id
+            ? { ...post, views: updatedPost.views }
+            : post,
+        ),
+      );
+    },
+    onError: (error) => {
+      console.error('Mutation 실패:', error);
+    },
+  });
+
+  const handlePostClick = (postId, currentViews) => {
+    updateViews.mutate({ postId, currentViews });
+    navigate(`/home/chat/${postId}`);
   };
 
   return (
@@ -27,7 +52,7 @@ function ChatList() {
           <div
             key={post.id}
             className="rounded-lg p-6 shadow-lg transition-shadow hover:cursor-pointer hover:shadow-2xl"
-            onClick={() => navigate(`/home/chat/${post.id}`)}
+            onClick={() => handlePostClick(post.id, post.views)}
           >
             <h2 className="mb-3 text-xl font-semibold">{post.title}</h2>
             <div className="mb-4 line-clamp-1 flex justify-between">

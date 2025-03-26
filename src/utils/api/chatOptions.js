@@ -8,7 +8,7 @@ const instance = axios.create({
   },
 });
 
-const chatAPI = {
+const chatOptions = {
   getChatList: (pageParam = 0, limit = 10) => ({
     queryKey: ['chats', pageParam],
     queryFn: async () => {
@@ -25,16 +25,6 @@ const chatAPI = {
       return data;
     },
   }),
-  updateViews: (postId) => ({
-    queryKey: ['updateViews', postId],
-    queryFn: async () => {
-      const { data } = await instance.patch(`/posts/${postId}`, {
-        views: 1,
-      });
-      return data;
-    },
-  }),
-
   getComments: (postId) => ({
     queryKey: ['comments', postId],
     queryFn: async () => {
@@ -42,6 +32,13 @@ const chatAPI = {
       return data;
     },
   }),
+
+  updateViews: async (postId, currentViews) => {
+    const { data } = await instance.patch(`/posts/${postId}`, {
+      views: currentViews + 1,
+    });
+    return data;
+  },
 };
 
-export default chatAPI;
+export default chatOptions;
