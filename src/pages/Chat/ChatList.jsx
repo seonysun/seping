@@ -8,7 +8,6 @@ import chatOptions from '../../utils/api/chatOptions';
 function ChatList() {
   const navigate = useNavigate();
 
-  const queryClient = useQueryClient();
   const { data: posts, isLoading: postsLoading } = useQuery(
     chatOptions.getChatList(),
   );
@@ -20,6 +19,8 @@ function ChatList() {
     const user = users.find((user) => user.id === authorId);
     return user ? user.username : '탈퇴한 회원입니다';
   };
+
+  const queryClient = useQueryClient();
 
   const updateViews = useMutation({
     mutationFn: async ({ postId, currentViews }) =>
