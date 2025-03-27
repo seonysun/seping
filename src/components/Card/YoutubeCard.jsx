@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useNavigate } from 'react-router-dom';
+import defaultImage from '../../assets/images/defaultImg.png';
 import useLazyImage from '../../hooks/useLazyImage';
 import FavoriteButton from '../Button/FavoriteButton';
 
@@ -19,13 +20,11 @@ function YoutubeCard({ item, size = 'w-[47%] md:w-[30%]' }) {
       <div className="py-2">
         <img
           ref={imgRef}
-          src="/src/assets/images/defaultImg.png"
-          data-src={
-            item.thumbnails.standard?.url || '/src/assets/images/defaultImg.png'
-          }
+          src={defaultImage}
+          data-src={item.thumbnails.standard?.url || defaultImage}
           alt={item.title}
           onError={(e) => {
-            e.currentTarget.src = '/src/assets/images/defaultImg.png';
+            e.currentTarget.src = defaultImage;
           }}
           className="size-full rounded-xl"
         />
