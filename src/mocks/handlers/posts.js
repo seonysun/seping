@@ -4,7 +4,7 @@ import { posts } from '../datas/posts';
 const baseURL = 'http://localhost:3000';
 
 const postHandler = [
-  // 게시글 가져오기
+  // 게시글 목록 가져오기
   http.get(`${baseURL}/api/posts`, async ({ request }) => {
     const url = new URL(request.url);
     const pageParam = Number(url.searchParams.get('pageParam')) || 0;
@@ -21,7 +21,6 @@ const postHandler = [
   // 조회수 증가
   http.patch(`${baseURL}/api/posts/:id/views`, async ({ params }) => {
     const { id } = params;
-
     const postIndex = posts.findIndex((post) => post.id === id);
 
     if (postIndex === -1) {
@@ -35,6 +34,15 @@ const postHandler = [
 
     await delay(1000);
     return HttpResponse.json(posts[postIndex], { status: 200 });
+  }),
+
+  // 게시글 조회
+  http.get(`${baseURL}/api/posts/:id`, async ({ params }) => {
+    const { id } = params;
+    const post = posts.find((el) => el.id === id);
+
+    await delay(1000);
+    return HttpResponse.json(post, { status: 200 });
   }),
 ];
 

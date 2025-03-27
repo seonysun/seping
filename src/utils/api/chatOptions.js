@@ -25,6 +25,13 @@ const chatOptions = {
       return data;
     },
   }),
+  getChat: (postId) => ({
+    queryKey: ['chats', postId],
+    queryFn: async () => {
+      const { data } = await instance.get(`/api/posts/${postId}`);
+      return data;
+    },
+  }),
   getComments: (postId) => ({
     queryKey: ['comments', postId],
     queryFn: async () => {
