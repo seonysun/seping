@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { useDispatch } from 'react-redux';
-import defaultImage from '../../assets/images/defaultImg.png';
 import useLazyImage from '../../hooks/useLazyImage';
 import { likeSlice } from '../../redux/Slice/likeSlice';
 import Button from '../Button/Button';
@@ -14,11 +13,11 @@ function ModalCard({ item }) {
       <div className="py-2">
         <img
           ref={imgRef}
-          src={defaultImage}
+          src="/speakupIcon.png"
           data-src={item.thumbnail}
           alt={item.title}
           onError={(e) => {
-            e.currentTarget.src = defaultImage;
+            e.currentTarget.src = '/speakupIcon.png';
           }}
           className="size-28 md:size-44"
         />

@@ -48,7 +48,11 @@ function Header() {
           <picture>
             <source srcSet="/speakupLogo.avif" type="image/avif" />
             <source srcSet="/speakupLogo.webp" type="image/webp" />
-            <img src="/speakupLogo.png" alt="speakup" className="h-[25px]" />
+            <img
+              src="/speakupLogo.png"
+              alt="speakup"
+              className="h-[25px] w-auto"
+            />
           </picture>
         </Link>
         <Navbar setSearchOpen={setSearchOpen} />
