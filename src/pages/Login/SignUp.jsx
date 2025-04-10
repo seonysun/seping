@@ -78,7 +78,7 @@ function SignUpForm() {
           errorMessage={error.confirmPassword}
           onChange={handleInput}
         />
-        <button type="submit" className="btn btn-purple mt-2 w-full">
+        <button type="submit" className="btn btn-main mt-2 w-full">
           가입하기
         </button>
       </form>

@@ -16,10 +16,7 @@ function Chat() {
         <p className="text-gray-600">작성자: {post.authorId}</p>
         <p className="mt-4">{post.content}</p>
         <div className="mt-4 flex items-center space-x-4">
-          <button
-            type="button"
-            className="btn btn-purple hover:btn-purple-hover"
-          >
+          <button type="button" className="btn btn-main hover:btn-main-hover">
             ❤️ {post.likes}
           </button>
           <span>조회수: {post.views}</span>

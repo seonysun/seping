@@ -29,6 +29,9 @@
   .btn-warning {
     @apply bg-warning hover:bg-warning-hover;
   }
+  .btn-main {
+    @apply bg-main hover:bg-main-hover;
+  }
   .btn-purple {
     @apply bg-purple hover:bg-purple-hover;
   }

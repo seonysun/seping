@@ -36,7 +36,7 @@ function Navbar({ setSearchOpen }) {
           }}
           className={`${
             location.pathname.includes(menu.to)
-              ? 'border-y border-purple font-bold text-purple'
+              ? 'border-main text-main border-y font-bold'
               : 'font-medium'
           } cursor-pointer`}
         >

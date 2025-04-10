@@ -111,7 +111,7 @@ function UserNav() {
       )}
       <Button
         text={login.isLogin ? '로그아웃' : '로그인'}
-        color="btn-purple"
+        color="btn-main"
         size="text-sm"
         onClick={login.isLogin ? toggleLogout : () => navigate('/home/signin')}
       />
