@@ -10,7 +10,11 @@ function Footer() {
           </li>
         ))}
       </ul>
-      <span className="mb-3 text-xl font-medium">seping.</span>
+      <picture>
+        <source srcSet="/speakupLogoW.avif" type="image/avif" />
+        <source srcSet="/speakupLogoW.webp" type="image/webp" />
+        <img src="/speakupLogoW.png" alt="speakup" className="h-[35px]" />
+      </picture>
       <p>
         문의 📨 <a href="/">csh99240@naver.com</a>
       </p>

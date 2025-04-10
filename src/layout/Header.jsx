@@ -45,7 +45,11 @@ function Header() {
           }
         />
         <Link to="/home" className="ml-4 flex-1 justify-start">
-          seping
+          <picture>
+            <source srcSet="/speakupLogo.avif" type="image/avif" />
+            <source srcSet="/speakupLogo.webp" type="image/webp" />
+            <img src="/speakupLogo.png" alt="speakup" className="h-[25px]" />
+          </picture>
         </Link>
         <Navbar setSearchOpen={setSearchOpen} />
         <UserNav />
