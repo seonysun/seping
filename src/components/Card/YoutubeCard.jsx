@@ -11,12 +11,12 @@ function YoutubeCard({ item, size = 'w-[47%] md:w-[30%]' }) {
 
   return (
     <section
-      className={`${size} mb-2 overflow-hidden px-2`}
+      className={`${size} z-0 mb-2 overflow-hidden px-2`}
       onClick={() => {
         navigate(`/home/video/${item.resourceId.videoId}`);
       }}
     >
-      <div className="py-2">
+      <div className="relative w-full overflow-hidden rounded-xl pb-[56.25%]">
         <img
           ref={imgRef}
           src="/speakupIcon.png"
@@ -25,17 +25,19 @@ function YoutubeCard({ item, size = 'w-[47%] md:w-[30%]' }) {
           onError={(e) => {
             e.currentTarget.src = '/speakupIcon.png';
           }}
-          className="size-full rounded-xl"
+          className="absolute inset-0 z-0 size-full object-cover"
         />
       </div>
-      <div className="flex items-start justify-between p-2">
-        <p className="flex flex-col">
-          <span className="text-sm">{item.channelTitle}</span>
-          <span className="line-clamp-2 font-semibold">{item.title}</span>
+      <div className="mt-1 flex flex-col text-sm">
+        <p className="flex items-center justify-between">
+          <span>{item.channelTitle}</span>
+          <FavoriteButton id={item.resourceId.videoId} />
         </p>
-        <FavoriteButton id={item.resourceId.videoId} />
+        <p className="my-1 line-clamp-2 text-base font-semibold">
+          {item.title}
+        </p>
+        <p className="text-gray">{item.publishedAt.split('T')[0]}</p>
       </div>
-      <p className="px-2 text-sm">{item.publishedAt.split('T')[0]}</p>
     </section>
   );
 }

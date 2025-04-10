@@ -29,7 +29,7 @@ function Header() {
   const isHiddenPage = !!location.pathname.match(/\/(list|search)/);
 
   return (
-    <header className="fixed top-0 w-full bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
+    <header className="fixed top-0 z-10 w-full bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
       <div className="flex h-[88px] items-center border-b">
         <Icon
           icon="RxHamburgerMenu"
@@ -51,7 +51,7 @@ function Header() {
             <img
               src="/speakupLogo.png"
               alt="speakup"
-              className="h-[25px] w-auto"
+              className="h-[30px] w-auto"
             />
           </picture>
         </Link>

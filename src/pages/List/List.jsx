@@ -31,7 +31,7 @@ function List() {
         {isLoading ? (
           <CardSkeleton num={MAX_LIST_LENGTH.VIDEO.ITEMS} />
         ) : (
-          <div className="flex flex-wrap justify-around gap-4">
+          <div className="flex flex-wrap gap-4 sm:gap-x-7">
             {data?.pages.flatMap((page) =>
               page.items.map((item) => (
                 <YoutubeCard key={item.id} item={item.snippet} />

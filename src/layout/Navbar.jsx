@@ -2,10 +2,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useLocation, useNavigate } from 'react-router-dom';
+import { LIST_MENU } from '../constants/uiData';
 import useResize from '../hooks/useResize';
 
 const MENU_TABS = [
-  { to: 'list/poong', tab: '목록' },
+  { to: `list/${LIST_MENU[0].to}`, tab: '목록' },
   { to: 'map', tab: '지도' },
   { to: 'chat', tab: '커뮤니티' },
   { to: 'search', tab: '검색' },
