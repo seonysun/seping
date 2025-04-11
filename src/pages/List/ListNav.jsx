@@ -8,7 +8,7 @@ function ListNav({ playlist, setPlaylist }) {
   const navigate = useNavigate();
 
   return (
-    <nav className="fixed left-0 top-[88px] w-full bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
+    <nav className="fixed left-0 top-[88px] z-10 w-full bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
       <ul className="flex justify-around p-3">
         {LIST_MENU.map((menu) => (
           <li

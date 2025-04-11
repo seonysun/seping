@@ -5,41 +5,49 @@ import { useNavigate } from 'react-router-dom';
 import useLazyImage from '../../hooks/useLazyImage';
 import FavoriteButton from '../Button/FavoriteButton';
 
-function YoutubeCard({ item, size = 'w-[47%] md:w-[31%]' }) {
+function ChallengeCard({ item, isLoading, size = 'w-[47%] md:w-[31%]' }) {
   const navigate = useNavigate();
   const imgRef = useLazyImage();
 
+  if (isLoading) {
+    return (
+      <div className={`${size} flex flex-col gap-3 px-2`}>
+        <div className="aspect-square animate-spark rounded-xl bg-gray-300" />
+        <p className="h-3 animate-spark rounded-md bg-gray-300 text-sm" />
+        <p className="h-3 animate-spark rounded-md bg-gray-300 text-sm" />
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`${size} z-0 mb-2`}
+      className={`${size} overflow-hidden px-2`}
       onClick={() => {
-        navigate(`/home/video/${item.resourceId.videoId}`);
+        navigate(`/home/detail/${item.id}`);
       }}
     >
-      <div className="relative w-full overflow-hidden rounded-xl pb-[56.25%]">
+      <div className="aspect-square rounded-xl border">
         <img
           ref={imgRef}
           src="/speakupIcon.png"
-          data-src={item.thumbnails.standard?.url || '/speakupIcon.png'}
+          data-src={item.thumbnail}
           alt={item.title}
           onError={(e) => {
             e.currentTarget.src = '/speakupIcon.png';
           }}
-          className="absolute inset-0 z-0 size-full object-cover"
+          className="size-full rounded-xl"
         />
       </div>
       <div className="relative p-2">
-        <p className="line-clamp-1 text-sm">{item.channelTitle}</p>
+        <p className="line-clamp-1 text-sm">{item.category}</p>
         <p className="my-1 line-clamp-2 h-12 font-semibold">{item.title}</p>
         <span className="absolute right-0 top-1">
-          <FavoriteButton id={item.resourceId.videoId} />
+          <FavoriteButton id={item.id} />
         </span>
-        <p className="line-clamp-2 text-xs text-gray">
-          {item.publishedAt.split('T')[0]}
-        </p>
+        <p className="line-clamp-2 text-xs">{item.description}</p>
       </div>
     </div>
   );
 }
 
-export default YoutubeCard;
+export default ChallengeCard;

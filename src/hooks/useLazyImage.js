@@ -4,6 +4,9 @@ const useLazyImage = () => {
   const imgRef = useRef(null);
 
   useEffect(() => {
+    const el = imgRef.current;
+    if (!el) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

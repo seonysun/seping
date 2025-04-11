@@ -13,11 +13,11 @@ function ModalCard({ item }) {
       <div className="py-2">
         <img
           ref={imgRef}
-          src="/src/assets/images/defaultImg.png"
+          src="/speakupIcon.png"
           data-src={item.thumbnail}
           alt={item.title}
           onError={(e) => {
-            e.currentTarget.src = '/src/assets/images/defaultImg.png';
+            e.currentTarget.src = '/speakupIcon.png';
           }}
           className="size-28 md:size-44"
         />

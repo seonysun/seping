@@ -56,6 +56,17 @@
           "order": "asc"
         }
       }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/src/mocks/**",
+          "**/test/**",
+          "**/*.test.{js,ts,tsx}",
+          "**/setupTests.{js,ts,tsx}"
+        ]
+      }
     ]
   },
   "overrides": [

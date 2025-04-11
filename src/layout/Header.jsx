@@ -29,7 +29,7 @@ function Header() {
   const isHiddenPage = !!location.pathname.match(/\/(list|search)/);
 
   return (
-    <header className="fixed top-0 w-full bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
+    <header className="fixed top-0 z-10 w-full bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
       <div className="flex h-[88px] items-center border-b">
         <Icon
           icon="RxHamburgerMenu"
@@ -45,7 +45,15 @@ function Header() {
           }
         />
         <Link to="/home" className="ml-4 flex-1 justify-start">
-          seping
+          <picture>
+            <source srcSet="/speakupLogo.avif" type="image/avif" />
+            <source srcSet="/speakupLogo.webp" type="image/webp" />
+            <img
+              src="/speakupLogo.png"
+              alt="speakup"
+              className="h-[30px] w-auto"
+            />
+          </picture>
         </Link>
         <Navbar setSearchOpen={setSearchOpen} />
         <UserNav />
@@ -107,7 +115,7 @@ function UserNav() {
       )}
       <Button
         text={login.isLogin ? '로그아웃' : '로그인'}
-        color="btn-purple"
+        color="btn-main"
         size="text-sm"
         onClick={login.isLogin ? toggleLogout : () => navigate('/home/signin')}
       />

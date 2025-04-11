@@ -17,11 +17,11 @@ function Search() {
     <main className="px-4 md:px-[10%]">
       <SearchInput />
       <p className="mt-2 text-lg">
-        <span className="rounded-lg bg-purple px-3 py-2 text-xl text-white">
+        <span className="bg-main rounded-lg px-3 py-2 text-xl text-white">
           {input}
         </span>
         &nbsp;검색 결과 :{' '}
-        <span className="text-xl text-purple">{data.total}</span>개
+        <span className="text-main text-xl">{data.total}</span>개
       </p>
       <ul className="mt-6 flex flex-wrap justify-center gap-4">
         {data?.total === 0 ? (

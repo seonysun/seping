@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 import { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,8 +19,8 @@ function App() {
         />
       )}
       <Header />
-      <main className="flex-1 pt-[88px]">
-        <Suspense fallback={<div>Loading...</div>}>
+      <main className="flex-1 px-4 pt-[88px] md:px-[10%]">
+        <Suspense fallback={<div className="mt-2 text-center">로딩중..</div>}>
           <Outlet />
         </Suspense>
       </main>
