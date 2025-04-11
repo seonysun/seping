@@ -1,31 +1,41 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
-import CardSkeleton from '../../components/Card/CardSkeleton';
-import VideoCard from '../../components/Card/VideoCard';
+/* eslint-disable react/no-array-index-key */
+import { useQuery } from '@tanstack/react-query';
+import Banner from './Banner';
+import ChallengeCard from '../../components/Card/ChallengeCard';
 import { MAX_LIST_LENGTH } from '../../constants/uiData';
-import useIntersectionObserver from '../../hooks/useIntersectionObserver';
-import videoOptions from '../../utils/api/videoOptions';
+import challengeOptions from '../../utils/api/challengeOptions';
 
 function Home() {
-  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery(videoOptions.infiniteList());
+  const { data, isLoading, isError } = useQuery(
+    challengeOptions.challengeList(),
+  );
 
-  const observerRef = useIntersectionObserver({ hasNextPage, fetchNextPage });
+  const renderContent = () => {
+    if (isLoading) {
+      return Array.from({ length: MAX_LIST_LENGTH.HOME.LANDING }).map(
+        (_, i) => <ChallengeCard key={i} isLoading />,
+      );
+    }
+
+    if (isError) {
+      return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+    }
+
+    if (data?.length === 0) {
+      return <div>표시할 챌린지가 없습니다.</div>;
+    }
+
+    return data.map((item, i) => (
+      <ChallengeCard key={item?.id ?? i} item={item} isLoading={false} />
+    ));
+  };
 
   return (
     <>
-      <div className="my-3 px-4 md:px-[10%]">
-        <div className="flex flex-wrap gap-4">
-          {data?.pages.flatMap((page) =>
-            page.products.map((item) => (
-              <VideoCard key={item.id} item={item} />
-            )),
-          )}
-        </div>
-        {isFetchingNextPage && (
-          <CardSkeleton num={MAX_LIST_LENGTH.HOME.ITEMS} />
-        )}
+      <Banner />
+      <div className="flex flex-wrap gap-4 p-4 lg:gap-x-6 xl:gap-x-8">
+        {renderContent()}
       </div>
-      <div ref={observerRef} className="h-32" />
     </>
   );
 }

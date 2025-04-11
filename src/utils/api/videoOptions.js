@@ -2,18 +2,9 @@ import { queryOptions } from '@tanstack/react-query';
 import videoAPI from './videoAPI';
 import { MAX_LIST_LENGTH } from '../../constants/uiData';
 
-const LIMIT = MAX_LIST_LENGTH.HOME.ITEMS;
 const VIDEOLIMIT = MAX_LIST_LENGTH.VIDEO.ITEMS;
 
 const videoOptions = {
-  infiniteList: () => ({
-    queryKey: ['products', 'infinite'],
-    queryFn: ({ pageParam = 0 }) =>
-      videoAPI.infiniteList({ pageParam, limit: LIMIT }),
-    getNextPageParam: (lastPage, allPages) =>
-      lastPage.products.length > 0 ? allPages.length * LIMIT : undefined,
-  }),
-
   allList: () =>
     queryOptions({
       queryKey: ['videos', 'all'],

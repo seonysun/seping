@@ -45,7 +45,7 @@ function ChatList() {
   };
 
   return (
-    <section className="space-y-6 p-4 md:px-[10%]">
+    <section className="space-y-6">
       {postsLoading || usersLoading ? (
         <div>채팅방 찾는 중...</div>
       ) : (
