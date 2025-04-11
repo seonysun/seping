@@ -9,7 +9,7 @@ export const SOCIAL_ICONS = [
 
 export const MAX_LIST_LENGTH = {
   HOME: {
-    LANDING: 6,
+    LANDING: 8,
     ITEMS: 12,
   },
   LIST: {
@@ -50,3 +50,9 @@ export const LIST_MENU = [
     playlist: 'PL_2WTfwBHPYN881r6IO5Emf5pDTqjOIEr',
   },
 ];
+
+export const SKELETON = {
+  half: 'w-[47%]',
+  third: 'w-[31%]',
+  responsive23: 'w-[47%] md:w-[30%]',
+};

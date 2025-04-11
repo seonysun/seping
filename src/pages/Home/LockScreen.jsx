@@ -1,15 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Icon from '../../assets/icons/common/Icon';
-import CardSkeleton from '../../components/Card/CardSkeleton';
-import { MAX_LIST_LENGTH } from '../../constants/uiData';
+import ListSkeleton from '../../components/Card/ListSkeleton';
+import { MAX_LIST_LENGTH, SKELETON } from '../../constants/uiData';
 import { Navbar } from '../../layout';
 import 'swiper/css';
 
 function SwipeContent() {
   return (
     <div className="absolute flex size-full flex-col">
-      <CardSkeleton num={MAX_LIST_LENGTH.HOME.LANDING} />
+      <ListSkeleton num={MAX_LIST_LENGTH.HOME.LANDING} size={SKELETON.half} />
       <Navbar />
     </div>
   );

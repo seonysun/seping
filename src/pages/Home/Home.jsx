@@ -12,9 +12,9 @@ function Home() {
 
   const renderContent = () => {
     if (isLoading) {
-      return Array.from({ length: MAX_LIST_LENGTH.HOME.LANDING }).map(
-        (_, i) => <ChallengeCard key={i} isLoading />,
-      );
+      return Array.from({ length: MAX_LIST_LENGTH.LIST.ITEMS }).map((_, i) => (
+        <ChallengeCard key={i} isLoading />
+      ));
     }
 
     if (isError) {
