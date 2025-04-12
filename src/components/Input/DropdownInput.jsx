@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaChevronDown } from 'react-icons/fa';
+import Icon from '../../assets/icons/common/Icon';
 
 const DROP_LIST = ['1번', '2번', '3번'];
 
@@ -23,7 +23,7 @@ function DropdownInput({ size, initialText = 'Dropdown' }) {
         className="flex items-center justify-between"
       >
         <span>{selected}</span>
-        <FaChevronDown size="22" />
+        <Icon icon="FaChevronDown" size="22" />
       </button>
       {isOpen && (
         <ul className="absolute left-0 top-full z-10 w-full rounded-lg border bg-white">

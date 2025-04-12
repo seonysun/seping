@@ -1,5 +1,5 @@
-import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
+import Icon from '../../assets/icons/common/Icon';
 import { likeSlice } from '../../redux/Slice/likeSlice';
 
 function FavoriteButton({ id }) {
@@ -18,9 +18,9 @@ function FavoriteButton({ id }) {
       }}
     >
       {isLike ? (
-        <IoHeart color="red" size="28" />
+        <Icon icon="IoHeart" color="red" size="28" />
       ) : (
-        <IoHeartOutline color="red" size="28" />
+        <Icon icon="IoHeartOutline" color="red" size="28" />
       )}
     </button>
   );

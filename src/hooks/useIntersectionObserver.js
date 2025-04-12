@@ -13,7 +13,7 @@ const useIntersectionObserver = ({ hasNextPage, fetchNextPage }) => {
           fetchNextPage();
         }
       },
-      { threshold: 1.0 },
+      { threshold: 0.5 },
     );
 
     if (observerRef.current) observer.observe(observerRef.current);

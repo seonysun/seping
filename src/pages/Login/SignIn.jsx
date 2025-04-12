@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import Input from '../../components/Input/Input';
+import SignInput from '../../components/Input/SignInput';
 import useFormValidation from '../../hooks/useFormValidation';
+import { loginSlice } from '../../redux/Slice/loginSlice';
+import { useSupabaseAuth } from '../../supabase';
 
 function SignIn() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [values, setValues] = useState({
     email: '',
@@ -20,10 +24,24 @@ function SignIn() {
   };
   useFormValidation(values, setError, 'signin');
 
+  const { login, getUserInfo, loginWithGoogle } = useSupabaseAuth();
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    const { email, password } = values;
+    await login({ email, password });
+
+    const userInfo = await getUserInfo();
+    dispatch(loginSlice.actions.login(userInfo));
+    alert(`${userInfo.user.userName}님 로그인 되었습니다!`);
+
     navigate('/');
+  };
+
+  const handleSocialLogin = async (provider) => {
+    if (provider === 'google') {
+      await loginWithGoogle();
+    }
   };
 
   return (
@@ -31,9 +49,9 @@ function SignIn() {
       <p className="mb-4 text-3xl font-semibold">로그인</p>
       <form
         onSubmit={handleLogin}
-        className="flex w-1/3 flex-col items-center gap-2"
+        className="flex w-1/3 min-w-80 flex-col items-center gap-2"
       >
-        <Input
+        <SignInput
           name="email"
           label="이메일"
           type="email"
@@ -42,7 +60,7 @@ function SignIn() {
           errorMessage={error.email}
           onChange={handleInput}
         />
-        <Input
+        <SignInput
           name="password"
           label="비밀번호"
           type="password"
@@ -51,8 +69,15 @@ function SignIn() {
           errorMessage={error.password}
           onChange={handleInput}
         />
-        <button type="submit" className="btn btn-purple mt-2 w-full">
+        <button type="submit" className="btn btn-main mt-2 w-full">
           로그인
+        </button>
+        <button
+          type="button"
+          onClick={() => handleSocialLogin('google')}
+          className="btn btn-blue w-full"
+        >
+          Google
         </button>
       </form>
       <p className="text-sm">

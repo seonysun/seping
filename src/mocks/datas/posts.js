@@ -1,0 +1,32 @@
+export const posts = [
+  {
+    id: '1',
+    title: '석촌 맛집 투어',
+    content: '잠실~석촌 맛집 투어 하실분!!',
+    authorId: 'tjsgud',
+    createdAt: '2025-03-25T10:00:00Z',
+    updatedAt: '2025-03-25T10:00:00Z',
+    views: 0,
+    likes: 0,
+  },
+  {
+    id: '2',
+    title: '망원동 빵투어 해요',
+    content: '투떰즈업, 브릭베이글 가요~~',
+    authorId: 'user1',
+    createdAt: '2025-03-25T12:30:00Z',
+    updatedAt: '2025-03-25T12:30:00Z',
+    views: 0,
+    likes: 0,
+  },
+  {
+    id: '3',
+    title: '다들 빵 얼마나 드시나요?',
+    content: '빵을 너무 많이 먹는 것 같아 고민입니다.',
+    authorId: 'user122',
+    createdAt: '2025-03-25T12:30:00Z',
+    updatedAt: '2025-03-25T12:30:00Z',
+    views: 0,
+    likes: 0,
+  },
+];

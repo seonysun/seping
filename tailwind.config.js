@@ -20,6 +20,11 @@ export default {
           DEFAULT: '#facc15',
           hover: '#eab308',
         },
+
+        main: {
+          DEFAULT: '#B7CBD5',
+          hover: '#6B8791',
+        },
         purple: {
           DEFAULT: '#7b78ff',
           hover: '#6867d7',

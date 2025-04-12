@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-function Input({
+function SignInput({
   label,
   type = 'text',
   placeholder = '입력하세요',
@@ -25,4 +25,4 @@ function Input({
   );
 }
 
-export default Input;
+export default SignInput;

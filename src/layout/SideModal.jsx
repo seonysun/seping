@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { IoClose } from 'react-icons/io5';
+import Icon from '../assets/icons/common/Icon';
 import ModalCard from '../components/Card/ModalCard';
 
 function SideModal({ setIsOpen, title, direction = 'left', itemList }) {
@@ -17,7 +17,8 @@ function SideModal({ setIsOpen, title, direction = 'left', itemList }) {
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <IoClose
+        <Icon
+          icon="IoClose"
           className="absolute right-6 top-6 cursor-pointer"
           onClick={() => setIsOpen()}
         />
