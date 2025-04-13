@@ -18,9 +18,9 @@ function VideoDetail() {
       ) : (
         <>
           <div className="mb-3 border-b pb-2 pt-4">
-            <div className="line-clamp-2 items-center text-2xl font-semibold">
-              <span>{data.snippet.title}</span>
-            </div>
+            <p className="line-clamp-2 items-center text-2xl font-semibold">
+              {data.snippet.title}
+            </p>
             <div className="flex justify-between gap-2 text-lg">
               <span>{data.snippet.channelTitle}</span>
               <FavoriteButton id={data.id} />
@@ -29,15 +29,12 @@ function VideoDetail() {
           <div
             className={`flex items-start gap-5 pb-4 ${isMobile ? 'flex-col' : ''}`}
           >
-            <img
-              src={data.snippet.thumbnails.standard.url}
-              alt={data.snippet.title}
-              className={`object-contain ${isMobile ? 'w-full' : 'w-1/2'}`}
-            />
-            <div
-              className={`flex flex-col gap-3 ${isMobile ? 'w-full' : 'w-1/2'}`}
-            >
-              <p className="flex gap-5">
+            <div className={`object-contain ${isMobile ? 'w-full' : 'w-1/2'}`}>
+              <img
+                src={data.snippet.thumbnails.standard.url}
+                alt={data.snippet.title}
+              />
+              <p className="my-2 flex gap-5">
                 <span className="text-lg">
                   <span className="font-semibold">👍 좋아요</span>{' '}
                   {Number(data.statistics.likeCount).toLocaleString()}
@@ -57,10 +54,12 @@ function VideoDetail() {
                   </li>
                 ))}
               </ul>
-              <p className="whitespace-pre-line break-words text-justify">
-                {data.snippet.description}
-              </p>
             </div>
+            <p
+              className={`${isMobile ? 'w-full' : 'w-1/2'} whitespace-pre-line break-words`}
+            >
+              {data.snippet.description}
+            </p>
           </div>
         </>
       )}
