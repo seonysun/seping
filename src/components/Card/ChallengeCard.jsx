@@ -42,7 +42,7 @@ function ChallengeCard({ item, isLoading, size = 'w-[47%] md:w-[31%]' }) {
         <p className="line-clamp-1 text-sm">{item.category}</p>
         <p className="my-1 line-clamp-2 h-12 font-semibold">{item.title}</p>
         <span className="absolute right-0 top-1">
-          <FavoriteButton id={item.id} />
+          <FavoriteButton id={item.id} type="bookmark" size="23" />
         </span>
         <p className="line-clamp-2 text-xs">{item.description}</p>
       </div>

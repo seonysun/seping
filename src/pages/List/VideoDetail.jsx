@@ -18,12 +18,12 @@ function VideoDetail() {
       ) : (
         <>
           <div className="mb-3 border-b pb-2 pt-4">
-            <p className="line-clamp-2 items-center text-2xl font-semibold">
-              {data.snippet.title}
-            </p>
+            <p>{data.snippet.channelTitle}</p>
             <div className="flex justify-between gap-2 text-lg">
-              <span>{data.snippet.channelTitle}</span>
-              <FavoriteButton id={data.id} />
+              <span className="line-clamp-2 items-center text-2xl font-semibold">
+                {data.snippet.title}
+              </span>
+              <FavoriteButton id={data.id} size="28" />
             </div>
           </div>
           <div
