@@ -86,12 +86,7 @@ function Header() {
 function UserNav() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // 수정 필요함
-  // const likeItemsId = useSelector((state) => state.like);
-  // const { data } = useFetch(() => videoAPI.allList());
-  // const likeList = data.length
-  //   ? data.filter((item) => likeItemsId.includes(item.id))
-  //   : [];
+
   const login = useSelector((state) => state.login);
 
   const { logout } = useSupabaseAuth();
@@ -117,7 +112,6 @@ function UserNav() {
               modalProps: {
                 title: '좋아요 목록',
                 direction: 'right',
-                itemList: likeList,
               },
             }),
           )
