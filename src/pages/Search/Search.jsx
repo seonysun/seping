@@ -1,4 +1,6 @@
+import { useCallback, useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { debounce } from 'lodash';
 import { useSearchParams } from 'react-router-dom';
 import ListSkeleton from '../../components/Card/ListSkeleton';
 import YoutubeCard from '../../components/Card/YoutubeCard';
@@ -8,8 +10,22 @@ import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import videoOptions from '../../utils/api/videoOptions';
 
 function Search() {
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get('input');
+  const [searchParams, setSearchParam] = useSearchParams();
+  const query = searchParams.get('input') ?? '';
+  const [inputValue, setInputValue] = useState(query);
+
+  const handleSearch = useCallback(
+    debounce((value) => {
+      setSearchParam({ input: value });
+    }, 300),
+    [],
+  );
+
+  const onChange = (e) => {
+    const { value } = e.target;
+    setInputValue(value);
+    handleSearch(value);
+  };
 
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useInfiniteQuery(videoOptions.playSearch(query));
@@ -21,7 +37,7 @@ function Search() {
 
   return (
     <main>
-      <SearchInput />
+      <SearchInput query={inputValue} onChange={onChange} />
       {isLoading ? (
         <ListSkeleton
           num={MAX_LIST_LENGTH.SEARCH.ITEMS}
@@ -49,13 +65,13 @@ function Search() {
                   />
                 )),
               )}
-              {isFetchingNextPage && (
-                <ListSkeleton
-                  num={MAX_LIST_LENGTH.VIDEO.ITEMS}
-                  size={SKELETON.responsive23}
-                />
-              )}
             </ul>
+          )}
+          {isFetchingNextPage && (
+            <ListSkeleton
+              num={MAX_LIST_LENGTH.VIDEO.ITEMS}
+              size={SKELETON.responsive23}
+            />
           )}
           <div ref={observerRef} className="h-10" />
         </div>
