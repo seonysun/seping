@@ -27,11 +27,15 @@ function Detail() {
             </div>
           </div>
           <div className={`my-3 flex gap-5 ${isMobile ? 'flex-col' : ''}`}>
-            <img
-              src="/speakupIcon.png"
-              alt={data.title}
-              className={isMobile ? 'w-full' : 'w-1/2'}
-            />
+            <picture>
+              <source srcSet="/speakupIcon.avif" type="image/avif" />
+              <source srcSet="/speakupIcon.webp" type="image/webp" />
+              <img
+                src="/speakupIcon.png"
+                alt={data.title}
+                className={isMobile ? 'w-full' : 'w-1/2'}
+              />
+            </picture>
             <div className="flex flex-col gap-3">
               <p className="text-lg">
                 <span className="bg-main-hover rounded p-2 text-white">

@@ -17,16 +17,20 @@ function YoutubeCard({ item, size = 'w-[47%] md:w-[31%]' }) {
       }}
     >
       <div className="relative w-full overflow-hidden rounded-xl pb-[56.25%]">
-        <img
-          ref={imgRef}
-          src="/speakupIcon.png"
-          data-src={item.thumbnails.standard?.url || '/speakupIcon.png'}
-          alt={item.title}
-          onError={(e) => {
-            e.currentTarget.src = '/speakupIcon.png';
-          }}
-          className="absolute inset-0 z-0 size-full object-cover"
-        />
+        <picture>
+          <source srcSet="/speakupIcon.avif" type="image/avif" />
+          <source srcSet="/speakupIcon.webp" type="image/webp" />
+          <img
+            ref={imgRef}
+            src="/speakupIcon.png"
+            data-src={item.thumbnails.standard?.url || '/speakupIcon.png'}
+            alt={item.title}
+            onError={(e) => {
+              e.currentTarget.src = '/speakupIcon.png';
+            }}
+            className="absolute inset-0 z-0 size-full object-cover"
+          />
+        </picture>
       </div>
       <div className="relative p-2">
         <p className="line-clamp-1 text-sm">{item.channelTitle}</p>

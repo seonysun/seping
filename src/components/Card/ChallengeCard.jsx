@@ -27,16 +27,20 @@ function ChallengeCard({ item, isLoading, size = 'w-[47%] md:w-[31%]' }) {
       }}
     >
       <div className="aspect-square rounded-xl border">
-        <img
-          ref={imgRef}
-          src="/speakupIcon.png"
-          data-src={item.thumbnail}
-          alt={item.title}
-          onError={(e) => {
-            e.currentTarget.src = '/speakupIcon.png';
-          }}
-          className="size-full rounded-xl"
-        />
+        <picture>
+          <source srcSet="/speakupIcon.avif" type="image/avif" />
+          <source srcSet="/speakupIcon.webp" type="image/webp" />
+          <img
+            ref={imgRef}
+            src="/speakupIcon.png"
+            data-src={item.thumbnail}
+            alt={item.title}
+            onError={(e) => {
+              e.currentTarget.src = '/speakupIcon.png';
+            }}
+            className="size-full rounded-xl"
+          />
+        </picture>
       </div>
       <div className="relative p-2">
         <p className="line-clamp-1 text-sm">{item.category}</p>
