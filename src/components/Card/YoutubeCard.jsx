@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import useLazyImage from '../../hooks/useLazyImage';
 import FavoriteButton from '../Button/FavoriteButton';
 
-function YoutubeCard({ item, size = 'w-[47%] md:w-[31%]' }) {
+function YoutubeCard({ id, item, size = 'w-[47%] md:w-[31%]' }) {
   const navigate = useNavigate();
   const imgRef = useLazyImage();
 
@@ -13,7 +13,7 @@ function YoutubeCard({ item, size = 'w-[47%] md:w-[31%]' }) {
     <div
       className={`${size} z-0 mb-2`}
       onClick={() => {
-        navigate(`/home/video/${item.resourceId.videoId}`);
+        navigate(`/home/video/${id}`);
       }}
     >
       <div className="relative w-full overflow-hidden rounded-xl pb-[56.25%]">
@@ -32,7 +32,7 @@ function YoutubeCard({ item, size = 'w-[47%] md:w-[31%]' }) {
         <p className="line-clamp-1 text-sm">{item.channelTitle}</p>
         <p className="my-1 line-clamp-2 h-12 font-semibold">{item.title}</p>
         <span className="absolute right-0 top-1">
-          <FavoriteButton id={item.resourceId.videoId} />
+          <FavoriteButton id={id} />
         </span>
         <p className="line-clamp-2 text-xs text-gray">
           {item.publishedAt.split('T')[0]}

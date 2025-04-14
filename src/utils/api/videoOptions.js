@@ -38,6 +38,17 @@ const videoOptions = {
       queryKey: ['videos', videoId],
       queryFn: () => videoAPI.playVideo(videoId),
     }),
+  playSearch: (query) =>
+    queryOptions({
+      queryKey: ['videos', query],
+      queryFn: ({ pageParam = '' }) =>
+        videoAPI.searchVideo({
+          pageToken: pageParam,
+          limit: VIDEOLIMIT,
+          query,
+        }),
+      getNextPageParam: (lastPage) => lastPage.nextPageToken || undefined,
+    }),
 };
 
 export default videoOptions;

@@ -27,22 +27,26 @@ function ChallengeCard({ item, isLoading, size = 'w-[47%] md:w-[31%]' }) {
       }}
     >
       <div className="aspect-square rounded-xl border">
-        <img
-          ref={imgRef}
-          src="/speakupIcon.png"
-          data-src={item.thumbnail}
-          alt={item.title}
-          onError={(e) => {
-            e.currentTarget.src = '/speakupIcon.png';
-          }}
-          className="size-full rounded-xl"
-        />
+        <picture>
+          <source srcSet="/speakupIcon.avif" type="image/avif" />
+          <source srcSet="/speakupIcon.webp" type="image/webp" />
+          <img
+            ref={imgRef}
+            src="/speakupIcon.png"
+            data-src={item.thumbnail}
+            alt={item.title}
+            onError={(e) => {
+              e.currentTarget.src = '/speakupIcon.png';
+            }}
+            className="size-full rounded-xl"
+          />
+        </picture>
       </div>
       <div className="relative p-2">
         <p className="line-clamp-1 text-sm">{item.category}</p>
         <p className="my-1 line-clamp-2 h-12 font-semibold">{item.title}</p>
         <span className="absolute right-0 top-1">
-          <FavoriteButton id={item.id} />
+          <FavoriteButton id={item.id} type="bookmark" size="23" />
         </span>
         <p className="line-clamp-2 text-xs">{item.description}</p>
       </div>

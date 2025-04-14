@@ -10,7 +10,7 @@ function Chat() {
 
   if (isLoading) return <p>로딩 중...</p>;
   return (
-    <section className="space-y-6 p-4 md:px-[10%]">
+    <section className="space-y-6">
       <div className="mx-auto max-w-2xl rounded-xl p-6 shadow-lg">
         <h1 className="text-2xl font-bold">{post.title}</h1>
         <p className="text-gray-600">작성자: {post.authorId}</p>
