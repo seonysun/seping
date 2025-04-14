@@ -45,6 +45,22 @@ const videoAPI = {
     });
     return data.items[0];
   },
+  searchVideo: async ({ pageToken = '', limit = VIDEOLIMIT, query }) => {
+    const { data } = await youtubeInstance.get('/search', {
+      params: {
+        q: query,
+        part: 'snippet',
+        type: 'video',
+        maxResults: limit,
+        pageToken,
+      },
+    });
+    return {
+      items: data.items,
+      nextPageToken: data.nextPageToken ?? null,
+      total: data.pageInfo.totalResults,
+    };
+  },
 };
 
 export default videoAPI;

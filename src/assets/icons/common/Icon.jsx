@@ -12,6 +12,8 @@ import {
   IoHeartOutline,
   IoChatbubblesOutline,
   IoSearch,
+  IoBookmarks,
+  IoBookmarksOutline,
 } from 'react-icons/io5';
 import { LuChevronUp } from 'react-icons/lu';
 import { RxHamburgerMenu } from 'react-icons/rx';
@@ -30,6 +32,8 @@ const iconMap = {
   FaChevronRight,
   FaChevronUp,
   LuChevronUp,
+  IoBookmarks,
+  IoBookmarksOutline,
 };
 
 function Icon({ icon, size = 22, color }) {

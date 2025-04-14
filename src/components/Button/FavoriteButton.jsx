@@ -2,10 +2,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import Icon from '../../assets/icons/common/Icon';
 import { likeSlice } from '../../redux/Slice/likeSlice';
 
-function FavoriteButton({ id }) {
+function FavoriteButton({ id, type = 'heart', size = '26' }) {
   const dispatch = useDispatch();
 
   const isLike = useSelector((state) => state.like.includes(id));
+
+  const iconMap = {
+    heart: {
+      active: 'IoHeart',
+      inactive: 'IoHeartOutline',
+      color: 'red',
+    },
+    bookmark: {
+      active: 'IoBookmarks',
+      inactive: 'IoBookmarksOutline',
+      color: '#555',
+    },
+  };
+  const { active, inactive, color } = iconMap[type] || iconMap.heart;
 
   return (
     <button
@@ -17,11 +31,7 @@ function FavoriteButton({ id }) {
         );
       }}
     >
-      {isLike ? (
-        <Icon icon="IoHeart" color="red" size="28" />
-      ) : (
-        <Icon icon="IoHeartOutline" color="red" size="28" />
-      )}
+      <Icon icon={isLike ? active : inactive} color={color} size={size} />
     </button>
   );
 }

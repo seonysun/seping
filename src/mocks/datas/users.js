@@ -5,13 +5,23 @@ export const users = [
     email: 'user1@example.com',
   },
   {
-    id: 'user1',
-    username: '빵순이',
+    id: 'clearSpeech',
+    username: '갓생러',
     email: 'user2@example.com',
   },
   {
-    id: '3',
+    id: 'debateLover',
     username: '사용자3',
+    email: 'user3@example.com',
+  },
+  {
+    id: 'earlyBird',
+    username: '갓생희망러',
+    email: 'user3@example.com',
+  },
+  {
+    id: '5',
+    username: '빵수니',
     email: 'user3@example.com',
   },
 ];

@@ -11,6 +11,7 @@ import { useSupabaseAuth } from '../supabase';
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const { getUserInfo } = useSupabaseAuth();
@@ -27,6 +28,14 @@ function Header() {
 
   const [searchOpen, setSearchOpen] = useState(false);
   const isHiddenPage = !!location.pathname.match(/\/(list|search)/);
+
+  const [inputValue, setInputValue] = useState('');
+  const searchSubmit = (e) => {
+    e.preventDefault();
+    if (!inputValue.trim()) return;
+
+    navigate(`/home/search?input=${inputValue}`);
+  };
 
   return (
     <header className="fixed top-0 z-10 w-full bg-light-main px-4 dark:bg-dark-main md:px-[10%]">
@@ -63,7 +72,11 @@ function Header() {
         <div
           className={`flex transition-all duration-300 ${searchOpen ? 'block' : 'hidden'}`}
         >
-          <SearchInput setSearchOpen={setSearchOpen} />
+          <SearchInput
+            setSearchOpen={setSearchOpen}
+            onChange={(e) => setInputValue(e.target.value)}
+            onSearch={searchSubmit}
+          />
         </div>
       )}
     </header>
@@ -73,12 +86,7 @@ function Header() {
 function UserNav() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // 수정 필요함
-  // const likeItemsId = useSelector((state) => state.like);
-  // const { data } = useFetch(() => videoAPI.allList());
-  // const likeList = data.length
-  //   ? data.filter((item) => likeItemsId.includes(item.id))
-  //   : [];
+
   const login = useSelector((state) => state.login);
 
   const { logout } = useSupabaseAuth();
@@ -104,7 +112,6 @@ function UserNav() {
               modalProps: {
                 title: '좋아요 목록',
                 direction: 'right',
-                itemList: likeList,
               },
             }),
           )
