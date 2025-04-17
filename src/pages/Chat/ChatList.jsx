@@ -45,7 +45,7 @@ function ChatList() {
   };
 
   return (
-    <section className="space-y-6">
+    <section className="my-4 space-y-6">
       {postsLoading || usersLoading ? (
         <div>채팅방 찾는 중...</div>
       ) : (
@@ -56,9 +56,9 @@ function ChatList() {
             onClick={() => handlePostClick(post.id, post.views)}
           >
             <h2 className="mb-3 text-xl font-semibold">{post.title}</h2>
-            <div className="mb-4 line-clamp-1 flex justify-between">
-              {post.content}
-              <span>
+            <div className="mb-4 flex justify-between gap-3">
+              <p className="line-clamp-2">{post.content}</p>
+              <span className="w-32">
                 👀 {post.views} ♥️ {post.likes}
               </span>
             </div>
