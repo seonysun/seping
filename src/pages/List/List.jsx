@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import ListNav from './ListNav';
@@ -24,10 +24,15 @@ function List() {
 
   const observerRef = useIntersectionObserver({ hasNextPage, fetchNextPage });
 
+  const resultElement = useRef(null);
+  useEffect(() => {
+    resultElement.current?.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [playlist]);
+
   return (
     <>
       <ListNav playlist={playlist} setPlaylist={setPlaylist} />
-      <div className="my-3 pt-[96px]">
+      <div ref={resultElement} className="my-3 pt-[96px]">
         {isLoading ? (
           <ListSkeleton
             num={MAX_LIST_LENGTH.LIST.ITEMS}
